@@ -12,10 +12,5 @@ class PrioritiesSeeder extends Seeder{
                 'description'=>'Время реализации до 1 дня',
                 'order'=>2
             ));
-        Priority::create(array(
-                'title'=>'Срочная задача / 2000 руб/час',
-                'description'=>'Время реализации в течение 1 часа',
-                'order'=>3
-            ));
     }
 }

@@ -13,6 +13,9 @@ class DatabaseSeeder extends Seeder {
 
         $this->call('UserSeeder');
         $this->command->info('User table seeded!');
+
+        $this->call('PrioritiesSeeder');
+        $this->command->info('Priorities table seeded!');
 	}
 
 }

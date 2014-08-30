@@ -18,7 +18,7 @@
                     <nav>
                         <ul>
                             <li><a href="#">Задачи</a></li>
-                            <li><a href="#">Добавить задачу</a></li>
+                            <li><a href="{{URL::to('ticket/create')}}">Добавить задачу</a></li>
                             <li><a href="#">Баланс</a></li>
                             <li><a href="#">Отчеты</a></li>
                             <li><a href="#">Файлы</a></li>
@@ -43,7 +43,7 @@
             </div>
         </header><!-- .header-->
         <main class="content">
-            <div class="inner-content">
+            <div class="inner-content @if(Auth::check()) admin @endif">
                 @yield('content')
             </div>
         </main><!-- .content -->

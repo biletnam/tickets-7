@@ -20,7 +20,10 @@ class TicketController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+        $ticket = new Ticket;
+        $priorities  = Priority::arrayPriority();
+
+        return View::make('ticket/create')->with(compact('priorities','ticket'));
 	}
 
 
@@ -31,7 +34,16 @@ class TicketController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$ticket = Ticket::create(Input::all());
+        if($ticket->validateCreate(Input::all())){
+            $ticket->user_id = Auth::user()->id;
+            $ticket->save();
+            Session::flash('ticket.create','Задача создана, №'.$ticket->id);
+            return Redirect::to('ticket');
+        }else{
+            return Redirect::to('ticket/create')->withErrors($ticket->errors())->withInput(Input::except('_token'));
+        }
+
 	}
 
 
