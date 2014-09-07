@@ -17,11 +17,11 @@
                 @if (Auth::check())
                     <nav>
                         <ul>
-                            <li><a href="#">Задачи</a></li>
-                            <li><a href="{{URL::to('ticket/create')}}">Добавить задачу</a></li>
-                            <li><a href="#">Баланс</a></li>
-                            <li><a href="#">Отчеты</a></li>
-                            <li><a href="#">Файлы</a></li>
+                            @if(Auth::user()->role=='admin')
+                                @include('include.navadmin')
+                            @elseif(Auth::user()->role=='user')
+                                @include('include.nav')
+                            @endif
                         </ul>
                     </nav>
                     <a class="exit" href="/logout">Выйти</a>

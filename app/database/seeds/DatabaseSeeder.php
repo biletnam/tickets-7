@@ -16,6 +16,12 @@ class DatabaseSeeder extends Seeder {
 
         $this->call('PrioritiesSeeder');
         $this->command->info('Priorities table seeded!');
+
+        $this->call('StatusSeeder');
+        $this->command->info('Status table seeded!');
+
+        $this->call('TicketSeeder');
+        $this->command->info('Ticket table seeded!');
 	}
 
 }

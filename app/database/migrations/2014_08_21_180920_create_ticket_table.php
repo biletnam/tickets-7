@@ -20,10 +20,10 @@ class CreateTicketTable extends Migration {
                 $table->string('url',255)->nullable();
                 $table->string('file_path',250)->nullable();
                 $table->integer('priority_id')->nullable();
-                $table->decimal('price')->nullable();
                 $table->integer('bt_user_id')->nullable();
+                $table->decimal('price')->nullable();
                 $table->boolean('apply')->default(false);
-                $table->boolean('close')->default(false);
+                $table->integer('status_id')->default(1);
                 $table->dateTime('close_dt')->nullable();
                 $table->softDeletes();
                 $table->timestamps();

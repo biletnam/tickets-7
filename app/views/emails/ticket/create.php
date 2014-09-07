@@ -1,0 +1,1 @@
+<p> На сайте создан тикет №<a href="<?=URL::route('ticket.show',array('id'=>$ticket->id));?>"><?=$ticket->id?></a></p>

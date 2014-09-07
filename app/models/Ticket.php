@@ -2,33 +2,41 @@
 
 class Ticket extends \Eloquent {
     protected $guarded = array('_token');
-    protected $errors;
 
-    protected $createRules = [
-        'url'=>'required',
-        'title'=>'required',
-        'priority_id'=>'required',
-        'file_path'=>'size:8'
-    ];
-
-    public function validateCreate($data)
-    {
-        // make a new validator object
-        $v = Validator::make($data, $this->createRules);
-
-        if ($v->fails())
+    public function scopeTicketList($query){
+        if (Auth::user()->role!=="admin")
         {
-            // set errors and return false
-            $this->errors = $v->errors();
-            return false;
+            $query->where('user_id','=',Auth::user()->id);
+        }
+        if(Input::get('status_id') && is_numeric((int)Input::get('status_id'))){
+            if(is_array(Input::get("status_id"))) $query->whereIn('status_id',Input::get('status_id'));
+            else $query->where('status_id','=',Input::get('status_id'));
+        }
+        if(Input::get('id') && is_numeric((int)Input::get('id'))){
+            if(is_array(Input::get("id"))) $query->whereIn('id',Input::get('id'));
+            else $query->where('id','=',Input::get('id'));
         }
 
-        // validation pass
-        return true;
+        if( !empty(Input::get('dt_from',null)) && !empty(Input::get('dt_to',null))){
+            $dt_from  = new DateTime(Input::get('dt_from'));
+            $dt_to    = new DateTime(Input::get('dt_to'));
+            $query->whereBetween('created_at',array($dt_from->format("Y-m-d 00:00:00"),$dt_to->format("Y-m-d 23:59:59")));
+        }
+
+        $query->orderBy('created_at','desc');
     }
 
-    public function errors()
+    public static  function statusCount($status_id){
+        return Ticket::where('status_id','=',$status_id)->count();
+    }
+
+    public function user()
     {
-        return $this->errors;
+        return $this->belongsTo('User')->select('full_name','email')->remember(10);
+    }
+
+    public function status()
+    {
+        return $this->belongsTo('Status')->select('title')->orderBy('order','asc');
     }
 }

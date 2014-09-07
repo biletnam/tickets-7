@@ -25,7 +25,7 @@ return array(
             'unix_socket' =>'/Applications/MAMP/tmp/mysql/mysql.sock',
 			'database'  => 'ticket',
 			'username'  => 'root',
-			'password'  => 'root',
+			'password'  => '1212033',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

@@ -3,7 +3,7 @@
 <h3>добавить Задачу</h3>
 <div class="gray-line"></div>
 <div class="form-add-block">
-    {{ Form::model($ticket,array('route' => array('ticket.store'),"role"=>"form","file"=>"true"))}}
+    {{ Form::model($ticket,array('route' => array('ticket.store'),"role"=>"form","files"=>"true"))}}
     <div class="left-form">
         <ul>
             <li>
@@ -23,10 +23,12 @@
             <li>
                 <span class="add-file">Прикрепить файл <span>(не больше 8 Мб.)</span>:</span><br/>
                 {{Form::file('file_path')}}
+                <label class="error">{{ $errors->first('file_path') }}</label>
             </li>
         </ul>
     </div>
     <div class="right-form">
+        <label class="error">{{ $errors->first('priority_id') }}</label>
         <ul>
             @foreach($priorities as $item)
                 <li>

@@ -19,6 +19,7 @@ class CreateUserTable extends Migration {
                 $table->string('email')->unique();
                 $table->decimal('balance',7,2)->default(0);
                 $table->string('password');
+                $table->string('img',250);
                 $table->string('role');
                 $table->string('remember_token',100); //Обязательное поле, для защищенности Cookie
                 $table->softDeletes();

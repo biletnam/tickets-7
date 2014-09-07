@@ -16,8 +16,18 @@
  */
 Route::get('/',['as'=>'home',
         function(){
-            return View::make('home');
+            if(Auth::check()){
+                return Redirect::to('ticket');
+            }else{
+                return View::make('home');
+            }
         }]);
+
+Route::get('/login',function(){
+        return View::make('home');
+    });
+
+
 
 /**
  * Authentificate
@@ -54,4 +64,22 @@ Route::get('/logout',array('as'=>'logout',function() {
  */
 Route::group(array('before' => 'auth'),function(){
         Route::resource('ticket','TicketController');
+        Route::resource('user','UserController');
+
+        /**
+         *  Вытащить файл
+         */
+        Route::get('manager/{ticket}',['as'=>'manager',
+            function($id){
+            if(!empty($id)){
+                $ticket = Ticket::findOrFail($id);
+                if(Auth::user()->role != 'admin' || Auth::user()->id != $ticket->user_id){
+                    return Response::download($ticket->file_path);
+                }else{
+                    throw Exception('403','Access Denided');
+                }
+            }
+        }]);
     });
+
+
