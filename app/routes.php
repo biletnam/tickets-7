@@ -66,6 +66,8 @@ Route::group(array('before' => 'auth'),function(){
         Route::resource('ticket','TicketController');
         Route::resource('user','UserController');
 
+        Route::controller('search','SearchController');
+
         /**
          *  Вытащить файл
          */

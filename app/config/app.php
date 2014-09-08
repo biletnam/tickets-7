@@ -124,6 +124,7 @@ return array(
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         'Way\Generators\GeneratorsServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
+        'Mmanos\Search\SearchServiceProvider',
 	),
 
 	/*
@@ -190,7 +191,7 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-
+        'Search'          => 'Mmanos\Search\Facade',
 	),
 
 );

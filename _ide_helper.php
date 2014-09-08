@@ -12142,5 +12142,23 @@ namespace {
     }
 
 
+    class Search extends \Mmanos\Search\Facade{
+        
+        /**
+         * Return the instance associated with the requested index name.
+         * 
+         * Will create one if needed.
+         *
+         * @param string $index
+         * @return \Mmanos\Search\Index 
+         * @static 
+         */
+        public static function index($index = null){
+            return \Mmanos\Search\Search::index($index);
+        }
+        
+    }
+
+
 }
 
