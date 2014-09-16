@@ -11,7 +11,6 @@
 </ul>
 <div class="form-block">
     {{ Form::open(array('url' => 'login','role'=>'form')) }}
-    {{}}
     @if(!empty($errors->get('login')[0]))
     <label class="error">{{$errors->get('login')[0]}}</label>
     @endif
