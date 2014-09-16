@@ -1,8 +1,11 @@
 /app/storage/search
+/app/config/
 /app/config/local
 /bootstrap/compiled.php
 /vendor
+/web-kmv.ru/.htaccess
 composer.phar
+composer.json
 composer.lock
 .idea
 .env.*.php
