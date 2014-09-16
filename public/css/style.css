@@ -166,7 +166,7 @@ a:hover {
 	padding: 5px 10px 5px 20px;
 	float: left;
 }
-.orang-block .inner-orang-block .search-form input[type="button"] {
+.orang-block .inner-orang-block .search-form input[type="submit"] {
     width: 75px;
 	height: 32px;
 	background: url(../images/search-btn.png) no-repeat;

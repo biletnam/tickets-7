@@ -33,10 +33,10 @@
                     <span class="personal-account">Личный кабинет клиента</span>
                     <span class="search-number-keyword">Поиск по номеру или слову</span>
                     <div class="search-form">
-                        <form>
-                            <input type="text" value=""/>
-                            <input type="button" value="Поиск"/>
-                        </form>
+                        {{Form::open(array('link'=>('search/index'),'method'=>'get'))}}
+                            {{Form::text('q',Input::get('q'))}}
+                            {{Form::submit('Поиск')}}
+                        {{Form::close()}}
                     </div>
                     <span class="head-rog"></span>
                 </div>
