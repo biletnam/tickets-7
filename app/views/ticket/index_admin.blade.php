@@ -50,7 +50,7 @@
             <td><?php $dt = new DateTime($ticket->created_at); echo $dt->format('d.m.Y')?></td>
             <td><?=$ticket->title?></td>
             <td><?=$ticket->user->full_name?></td>
-            <td><?=!empty($status[$ticket->status_id]) $status[$ticket->status_id]:''?></td>
+            <td><?=!empty($status[$ticket->status_id])?$status[$ticket->status_id]:''?></td>
             <td><a href="{{URL::route('ticket.show',array('id'=>$ticket->id))}}">Просмотр</a> <a href="{{URL::route('ticket.edit',array('id'=>$ticket->id))}}">Редактировать</a></td>
         </tr>
         <?$k++;?>
