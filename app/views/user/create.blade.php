@@ -37,7 +37,7 @@
                 <label class="error">{{ $errors->first('role') }}</label>
             </li>
             <li>
-                {{ Form::submit('Добавить задачу',['class'=>'add-work'])}}
+                {{ Form::submit('Добавить клиента',['class'=>'add-work'])}}
             </li>
         </ul>
     </div>
