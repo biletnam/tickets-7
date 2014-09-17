@@ -45,4 +45,9 @@ class Ticket extends \Eloquent {
     {
         return $this->belongsTo('Status')->select('title')->orderBy('order','asc');
     }
+
+    public function priority()
+    {
+        return $this->belongsTo('Priority')->select('title')->orderBy('order','asc');
+    }
 }

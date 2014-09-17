@@ -7,14 +7,14 @@
     <div class="left-form">
         <ul>
             <li>
-                <span>URL адрес страницы, для которой ставится задача:</span><br/>
-                {{Form::text('url')}}
-                <label class="error">{{ $errors->first('url') }}</label>
-            </li>
-            <li>
                 <span>Название задачи:</span><br/>
                 {{Form::text('title')}}
                 <label class="error">{{ $errors->first('title') }}</label>
+            </li>
+            <li>
+                <span>URL адрес страницы, для которой ставится задача:</span><br/>
+                {{Form::text('url')}}
+                <label class="error">{{ $errors->first('url') }}</label>
             </li>
             <li>
                 <span>Описание:</span><br/>

@@ -19,7 +19,7 @@
                         <ul>
                             @if(Auth::user()->role=='admin')
                                 @include('include.navadmin')
-                            @elseif(Auth::user()->role=='user')
+                            @elseif(Auth::user()->role!='admin')
                                 @include('include.nav')
                             @endif
                         </ul>
@@ -33,7 +33,7 @@
                     <span class="personal-account">Личный кабинет клиента</span>
                     <span class="search-number-keyword">Поиск по номеру или слову</span>
                     <div class="search-form">
-                        {{Form::open(array('link'=>('search/index'),'method'=>'get'))}}
+                        {{Form::open(array('url'=>'search/index','method'=>'get'))}}
                             {{Form::text('q',Input::get('q'))}}
                             {{Form::submit('Поиск')}}
                         {{Form::close()}}
