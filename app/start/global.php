@@ -49,7 +49,7 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 App::error(function(Exception $exception, $code)
 {
 	Log::error($exception);
-    /*switch ($code)
+    switch ($code)
     {
         case 403:
             return Response::view('errors.403', array('exception'=>$exception), 403);
@@ -62,7 +62,7 @@ App::error(function(Exception $exception, $code)
 
         default:
             return Response::view('errors.default', array(), $code);
-    }*/
+    }
 });
 
 /*

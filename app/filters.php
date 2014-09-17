@@ -49,6 +49,22 @@ Route::filter('auth', function()
 });
 
 
+Route::filter('admin', function()
+{
+    if (!Auth::guest() && Auth::user()->role !='admin')
+    {
+        if (Request::ajax())
+        {
+            return Response::make('Access denied', 403);
+        }
+        else
+        {
+            App::abort('403','Acceess denied');
+        }
+    }
+});
+
+
 Route::filter('auth.basic', function()
 {
 	return Auth::basic();

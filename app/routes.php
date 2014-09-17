@@ -64,7 +64,6 @@ Route::get('/logout',array('as'=>'logout',function() {
  */
 Route::group(array('before' => 'auth'),function(){
         Route::resource('ticket','TicketController');
-        Route::resource('user','UserController');
 
         Route::controller('search','SearchController');
 
@@ -78,10 +77,15 @@ Route::group(array('before' => 'auth'),function(){
                 if(Auth::user()->role != 'admin' || Auth::user()->id != $ticket->user_id){
                     return Response::download($ticket->file_path);
                 }else{
-                    throw Exception('403','Access Denided');
+                    App::abort('403','Acceess denied');
                 }
             }
         }]);
     });
 
-
+/**
+ * Пути доступные только админам
+ */
+Route::group(array('before' => array('auth','admin')),function(){
+    Route::resource('user','UserController');
+});
