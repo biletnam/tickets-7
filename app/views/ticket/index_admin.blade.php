@@ -48,8 +48,8 @@
         <tr class="<?if($k==0):?>table-info-user<?endif;?> <?if($k+1==count($ticket)):?>last-border<?endif;?>">
             <td><?=$ticket->id?></td>
             <td><?php $dt = new DateTime($ticket->created_at); echo $dt->format('d.m.Y')?></td>
-            <td><?=$ticket->title?></td>
-            <td><?=$ticket->user->full_name?></td>
+            <td><?=!empty($ticket->title)?$ticket->title:""?></td>
+            <td><?=!empty($ticket->user->full_name)? $ticket->user->full_name:'' ?></td>
             <td><?=!empty($status[$ticket->status_id])?$status[$ticket->status_id]:''?></td>
             <td><a href="{{URL::route('ticket.show',array('id'=>$ticket->id))}}">Просмотр</a> <a href="{{URL::route('ticket.edit',array('id'=>$ticket->id))}}">Редактировать</a></td>
         </tr>
@@ -59,6 +59,7 @@
     <tfoot>
     <tr>
         <td><span class="left-sp"></span></td>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>
