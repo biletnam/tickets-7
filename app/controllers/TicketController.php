@@ -110,13 +110,13 @@ class TicketController extends \BaseController {
 	public function edit($id)
 	{
         $ticket= Ticket::findOrFail($id);
+        $status_obj = Status::orderBy('order')->get();
+        $statuses = array();
+        foreach($status_obj as $status){
+            $statuses[$status->id]=$status->title;
+        }
         if($ticket->user_id==Auth::user()->id || Auth::user()->role=="admin"){
             if (Auth::user()->role!=="admin"){
-                $status_obj = Status::orderBy('order')->get();
-                $statuses = array();
-                foreach($status_obj as $status){
-                    $statuses[$status->id]=$status->title;
-                }
                 return View::make('ticket.edit')->with(compact('ticket','statuses'));
             }else{
                 return View::make('ticket.edit')->with(compact('ticket','statuses'));
