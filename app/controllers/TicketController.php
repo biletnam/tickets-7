@@ -91,7 +91,7 @@ class TicketController extends \BaseController {
 	public function show($id)
 	{
         $ticket= Ticket::findOrFail($id);
-        if($ticket->user_id==Auth::user()->id || Auth::user()=="admin"){
+        if($ticket->user_id==Auth::user()->id || Auth::user()->role=="admin"){
             return View::make('ticket.view')->with(compact('ticket'));
         }else{
             App::abort(403, 'У вас нет прав, для просмотра этой страницы.');
@@ -110,7 +110,7 @@ class TicketController extends \BaseController {
 	public function edit($id)
 	{
         $ticket= Ticket::findOrFail($id);
-        if($ticket->user_id==Auth::user()->id || Auth::user()=="admin"){
+        if($ticket->user_id==Auth::user()->id || Auth::user()->role=="admin"){
             if (Auth::user()->role!=="admin"){
                 $status_obj = Status::orderBy('order')->get();
                 $statuses = array();
@@ -137,7 +137,7 @@ class TicketController extends \BaseController {
 	{
 
         $ticket= Ticket::findOrFail($id);
-        if($ticket->user_id==Auth::user()->id || Auth::user()=="admin"){
+        if($ticket->user_id==Auth::user()->id || Auth::user()->role=="admin"){
             $change  = array();
             if(Input::get("status_id") && $ticket->status_id !=Input::get("status_id")){
                 $ticket->status_id = Input::get("status_id");
