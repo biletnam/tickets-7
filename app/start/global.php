@@ -55,13 +55,13 @@ App::error(function(Exception $exception, $code)
             return Response::view('errors.403', array('exception'=>$exception), 403);
 
         case 404:
-            return Response::view('errors.404', array(), 404);
+            return Response::view('errors.404', array('exception'=>$exception), 404);
 
         case 500:
-            return Response::view('errors.500', array(), 500);
+            return Response::view('errors.500', array('exception'=>$exception), 500);
 
         default:
-            return Response::view('errors.default', array(), $code);
+            return Response::view('errors.default', array('exception'=>$exception), $code);
     }
 });
 
