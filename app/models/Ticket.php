@@ -21,6 +21,12 @@ class Ticket extends \Eloquent {
             $dt_from  = new DateTime(Input::get('dt_from'));
             $dt_to    = new DateTime(Input::get('dt_to'));
             $query->whereBetween('created_at',array($dt_from->format("Y-m-d 00:00:00"),$dt_to->format("Y-m-d 23:59:59")));
+        }elseif(Input::get('dt_from',false) && !Input::get('dt_to',false)){
+            $dt_from  = new DateTime(Input::get('dt_from'));
+            $query->where('created_at','>=',$dt_from->format("Y-m-d 00:00:00"));
+        }elseif(!Input::get('dt_from',false) && Input::get('dt_to',false)){
+            $dt_to  = new DateTime(Input::get('dt_to'));
+            $query->where('created_at','<=',$dt_to->format("Y-m-d 23:59:59"));
         }
 
         $query->orderBy('created_at','desc');
