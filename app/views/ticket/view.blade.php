@@ -1,31 +1,50 @@
 @extends('layouts.default')
 @section('content')
-<h3>Задача № {{$ticket->id}} <a href="<?=URL::route('ticket.edit',array($ticket->id))?>">Edit</a></h3>
+<h3>Задача № {{$ticket->id}} @if(Auth::user()->role=='admin')<a href="<?=URL::route('ticket.edit',array($ticket->id))?>">Edit</a>@endif</h3>
 <div class="gray-line"></div>
-<div class="view-block">
-    <ul>
-        @if(!empty($ticket->title))
-        <li><label class="label">Название:</label> <span>{{$ticket->title}}</span></li>
-        @endif
+<div class="form-add-block">
+    <?if(Session::has('status_id')){
+        echo '<div class="alert success">'.Session::get('status_id').'</div>';
+    }?>
+    <?if(Session::has('error')){
+        echo '<div class="alert warning">'.Session::get('error').'</div>';
+    }?>
+    <div class="view-block">
+        <ul>
+            @if(!empty($ticket->title))
+            <li><label class="label">Название:</label> <span>{{$ticket->title}}</span></li>
+            @endif
 
-        @if(!empty($ticket->url))
-        <li><label>URL:</label>: <span><a href="{{$ticket->url}}">{{$ticket->url}}</a></span></li>
-        @endif
+            @if(!empty($ticket->url))
+            <li><label>URL:</label>: <span><a href="{{$ticket->url}}">{{$ticket->url}}</a></span></li>
+            @endif
 
-        @if(!empty($ticket->description))
-        <li>
-            {{$ticket->description}}
-        </li>
-        @endif
-        @if(!empty($ticket->file_path))
-            <li><a target="_blank" href="{{URL::to('manager',array('ticket'=>$ticket->id))}}">Файл</a></li>
-        @endif
+            @if(!empty($ticket->description))
+            <li>
+                {{$ticket->description}}
+            </li>
+            @endif
+            @if(!empty($ticket->file_path))
+                <li><a target="_blank" href="{{URL::to('manager',array('ticket'=>$ticket->id))}}">Файл</a></li>
+            @endif
 
-        <li><label>Приоритет</label>: <span>{{$ticket->priority->title}}</span></li>
-        <li><label>Статус</label>: <span>{{$ticket->status->title}}</span></li>
-        <li><label>Дата создания</label>: <span><?$dt = new DateTime($ticket->created_at); echo  $dt->format('d.m.Y H:i')?></span></li>
-        <li><label>Стоимость работы</label>: <span><?=number_format($ticket->price,0,'',' ')?></span></li>
-        <li><label>Cтатус подтверждения заказчиком</label>: <span><?=$ticket->apply==0 ? "Не подтвержден":"Подтвержден"?></span></li>
-    </ul>
+            <li><label>Приоритет</label>: <span>{{$ticket->priority->title}}</span></li>
+            <li><label>Статус</label>: <span>{{$ticket->status->title}}</span></li>
+            <li><label>Дата создания</label>: <span><?$dt = new DateTime($ticket->created_at); echo  $dt->format('d.m.Y H:i')?></span></li>
+            <li><label>Стоимость работы</label>: <span><?=number_format($ticket->price,0,'',' ')?></span></li>
+            @if(Auth::user()->role=='admin')
+            <li><label>Cтатус подтверждения заказчиком</label>: <span><?=$ticket->apply==0 ? "Не подтвержден":"Подтвержден"?></span></li>
+            @else
+                @if($ticket->apply==0)
+                <li>
+                    {{Form::model($ticket,array('route' => array('ticket.update',"ticket"=>$ticket->id),"role"=>"form","method"=>"PUT"))}}
+                        {{Form::hidden('apply',1)}}
+                        {{ Form::submit('Подтвердить',['class'=>'add-work'])}}
+                    {{Form::close();}}
+                </li>
+                @endif
+            @endif
+        </ul>
+    </div>
 </div>
 @stop

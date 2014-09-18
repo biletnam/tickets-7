@@ -4,6 +4,7 @@
 @if(Session::has('ticket.create'))
     {{Session::get('ticket.create')}}
 @endif
+<a href="{{URL::route('ticket.index',array('apply'=>0))}}" class="button">Задачи требующие подтверждения</a>
 @if(!empty($tickets))
     <table>
         <thead>
@@ -25,7 +26,7 @@
                 <td><?=$ticket->title?></td>
                 <td><?=$status[$ticket->status_id]?></td>
                 <td><?=number_format($ticket->price,0,'',' ')?></td>
-                <td><a href="{{URL::route('ticket.show',array('id'=>$ticket->id))}}">Просмотр</a> <a href="{{URL::route('ticket.edit',array('id'=>$ticket->id))}}">Редактировать</a></td>
+                <td><a href="{{URL::route('ticket.show',array('id'=>$ticket->id))}}">Просмотр</a></td>
             </tr>
             <?$k++;?>
         <?php endforeach;?>

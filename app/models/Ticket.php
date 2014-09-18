@@ -17,6 +17,10 @@ class Ticket extends \Eloquent {
             else $query->where('id','=',Input::get('id'));
         }
 
+        if(Input::get('apply',false)){
+            $query->where('apply','=',intval(Input::get('apply')));
+        }
+
         if( Input::get('dt_from',false) && Input::get('dt_to',false)){
             $dt_from  = new DateTime(Input::get('dt_from'));
             $dt_to    = new DateTime(Input::get('dt_to'));

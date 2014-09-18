@@ -139,7 +139,7 @@ class TicketController extends \BaseController {
         $ticket= Ticket::findOrFail($id);
         if($ticket->user_id==Auth::user()->id || Auth::user()->role=="admin"){
             $change  = array();
-            if(Input::get("status_id") && $ticket->status_id !=Input::get("status_id")){
+            if(Input::get("status_id") && $ticket->status_id !=Input::get("status_id") && Auth::user()->role=='admin'){
                 $ticket->status_id = Input::get("status_id");
                 $change = array('status_id'=>'Статус задачи изменен');
             }
@@ -151,18 +151,27 @@ class TicketController extends \BaseController {
 
             if(Input::get("apply") && $ticket->price !=Input::get("apply")){
                 $ticket->apply = Input::get("apply");
-                $change = array('status_id'=>'Статус подтверждения заказчиком задачи изменен');
+                $change = array('status_id'=>'Подтверждено.');
             }
             if(!empty($change) && $ticket->save()){
                 foreach($change as $k=>$str){
                     Session::flash($k,$str);
                 }
-                return Redirect::route('ticket.edit',array($id));
+                if(Auth::user()->role=="admin"){
+                    return Redirect::route('ticket.edit',array($id));
+                }else{
+                    return Redirect::route('ticket.show',array($id));
+                }
             }else{
                 if(empty($change)){
                     Session::flash('error','Вы не внесли изменения в задачу');
                 }
-                return Redirect::route('ticket.edit',array($id));
+                if(Auth::user()->role=="admin"){
+                    return Redirect::route('ticket.edit',array($id));
+                }else{
+                    return Redirect::route('ticket.show',array($id));
+                }
+
             }
         }else{
             App::abort(403, 'У вас нет прав, для просмотра этой страницы.');
