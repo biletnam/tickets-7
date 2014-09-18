@@ -54,7 +54,7 @@ class TicketController extends \BaseController {
 	 */
 	public function store()
 	{
-        $validate = Validator::make(Input::all(),['url'=>'required',
+        $validate = Validator::make(Input::all(),['url'=>'required|url',
                                 'title'=>'required',
                                 'priority_id'=>'required',
                                 'file_path'=>'max:8000'
