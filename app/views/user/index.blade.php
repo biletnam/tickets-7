@@ -9,6 +9,17 @@
 <div class="admin-name">
     <a class="add-client" href="{{URL::route('user.create')}}">Добавить клиента</a>
 </div>
+
+<div class="filter">
+    {{ Form::open(array('route' =>array('user.index'),"role"=>"form","method"=>"get"))}}
+    <p>Номер:{{Form::text('id',Input::get('id'))}}</p>
+    <p>ФИО:{{Form::text('full_name',Input::get('full_name'))}}</p>
+    <p>E-mail:{{Form::text('email',Input::get('email'))}}</p>
+    <p>Телефон:{{Form::text('phone',Input::get('phone'))}}</p>
+    <p>{{ Form::submit('Фильтровать',['class'=>'btn'])}}</p>
+    <p><a href="/user/">Очистить</a></p>
+    {{Form::close();}}
+</div>
 @if(!empty($users))
 <table>
     <thead>

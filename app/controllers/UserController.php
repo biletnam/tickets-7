@@ -10,7 +10,7 @@ class UserController extends \BaseController {
 	 */
 	public function index()
 	{
-		$users = User::orderBy('id')->paginate(20);
+		$users = User::UserList()->paginate(20);
         return View::make('user.index')->with(compact('users'));
 	}
 

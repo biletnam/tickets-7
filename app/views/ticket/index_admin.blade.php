@@ -23,6 +23,7 @@
             <p>Дата c:{{Form::text('dt_from',Input::get('dt_from'))}}</p>
             <p>Дата по:{{Form::text('dt_to',Input::get('dt_to'))}}</p>
             <p>{{ Form::submit('Фильтровать',['class'=>'btn'])}}</p>
+            <p><a href="/ticket/">Очистить</a></p>
             {{Form::close();}}
         </div>
     </div>

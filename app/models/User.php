@@ -27,4 +27,25 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	protected $hidden = array('password', 'remember_token');
 
     protected $guarded = array('password_confirmation');
+
+    public function scopeUserList($query){
+
+        if(Input::get('id')){
+            $query->where('id','=',Input::get('id'));
+        }
+
+        if(Input::get('full_name')){
+            $query->where('full_name','like',"%".Input::get('full_name')."%");
+        }
+
+        if(Input::get('email')){
+            $query->where('email','like',"%".Input::get('email')."%");
+        }
+
+        if(Input::get('phone')){
+            $query->where('phone','like',"%".Input::get('phone')."%");
+        }
+
+        $query->orderBy('created_at','desc');
+    }
 }
