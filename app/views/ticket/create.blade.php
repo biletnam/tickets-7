@@ -4,7 +4,6 @@
 <div class="gray-line"></div>
 <div class="form-add-block">
     {{ Form::model($ticket,array('route' => array('ticket.store'),"role"=>"form","files"=>"true"))}}
-    {{base_path()}}
     <div class="left-form">
         <ul>
             <li>
@@ -14,8 +13,8 @@
             </li>
             <li>
                 <span>URL адрес страницы, для которой ставится задача:</span><br/>
-                <span>(вводите полный путь с http://,пример: http://example.ru/test.php)</span><br>
-                {{Form::text('url')}}
+                <span>(вводите полный путь с http://)</span><br>
+                {{Form::text('url',array('placeholder'=>'http://example.com/test.php'))}}
                 <label class="error">{{ $errors->first('url') }}</label>
             </li>
             <li>

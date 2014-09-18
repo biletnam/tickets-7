@@ -65,7 +65,7 @@ class TicketController extends \BaseController {
             $ticket->user_id = Auth::user()->id;
             if ($ticket->save()){
                 if(Input::hasFile('file_path')){
-                    $path = base_path().'/web-kmb.ru/files/';
+                    $path = base_path().'/web-kmv.ru/files/';
                     $name = $filename = Str::random(20) . '.' . Input::file('file_path')->guessExtension();
                     Input::file('file_path')->move($path,$name);
                     $ticket->file_path =$path.$name;
