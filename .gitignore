@@ -4,6 +4,7 @@
 /bootstrap/compiled.php
 /vendor
 /web-kmv.ru/.htaccess
+/web-kmv.ru/files/
 composer.phar
 composer.json
 composer.lock
