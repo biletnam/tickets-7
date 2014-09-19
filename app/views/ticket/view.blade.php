@@ -25,7 +25,8 @@
             </li>
             @endif
             @if(!empty($ticket->file_path))
-                <li><a target="_blank" href="{{URL::to('manager',array('ticket'=>$ticket->id))}}">Файл</a></li>
+                <li><a target="_blank" href="<?echo substr($ticket->file_path,strpos($ticket->file_path,'web-kmv.ru')+10)?>">Файл</a></li>
+                <?/*<li><a target="_blank" href="{{URL::to('manager',array('ticket'=>$ticket->id))}}">Файл</a></li>*/?>
             @endif
 
             <li><label>Приоритет</label>: <span>{{$ticket->priority->title}}</span></li>

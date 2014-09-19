@@ -66,7 +66,6 @@ Route::group(array('before' => 'auth'),function(){
         Route::resource('ticket','TicketController');
 
         Route::controller('search','SearchController');
-
         /**
          *  Вытащить файл
          */
@@ -75,7 +74,6 @@ Route::group(array('before' => 'auth'),function(){
             if(!empty($id)){
                 $ticket = Ticket::findOrFail($id);
                 if(Auth::user()->role != 'admin' || Auth::user()->id != $ticket->user_id){
-                    echo $ticket->file_path."<br>";
                     return Response::download($ticket->file_path);
                 }else{
                     App::abort('403','Acceess denied');
