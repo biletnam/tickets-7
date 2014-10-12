@@ -48,4 +48,31 @@
         </ul>
     </div>
 </div>
+<h3 class="comment-title">
+    Комментарии
+</h3>
+<div class="form-comment">
+    {{Form::open(array("href"=>URL::to('comment'),"id"=>"commentForm","method"=>"post"))}}
+        <p>
+            <label>
+                <textarea name="comment"></textarea>
+            </label>
+        </p>
+        <p>
+            <input type="hidden" name="controller" value="<?=URL::to('comment')?>" >
+            <input type="hidden" name="ticket_id" value="<?=$ticket->id?>" >
+            <input type="submit" value="Комментировать">
+        </p>
+    {{Form::close()}}
+</div>
+<?if(!empty($ticket->commets()->get())):?>
+<div class="comments">
+    <?foreach($ticket->commets()->get() as $comment){?>
+        <div class="comment <?=Auth::user()->role?>">
+            <p clas="about"><span class="date"><?$dt = new DateTime($comment->created_at); echo $dt->format('d.m.Y H:i')?></span> <span class="author"><?=$comment->user->full_name?></span></p>
+            <div>{{$comment->comment}}</div>
+        </div>
+    <?}?>
+</div>
+<?endif?>
 @stop

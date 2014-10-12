@@ -190,5 +190,4 @@ class TicketController extends \BaseController {
 		//
 	}
 
-
 }

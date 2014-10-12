@@ -65,6 +65,27 @@ Route::get('/logout',array('as'=>'logout',function() {
 Route::group(array('before' => 'auth'),function(){
         Route::resource('ticket','TicketController');
 
+        Route::post('/comment/',array('as'=>'commenet',function(){
+            $ticket_id = Input::get('ticket_id');
+            $comment = Input::get('comment');
+            if(!empty($ticket_id) && !empty($comment)){
+                $ticketComment = new TicketComment;
+                $ticketComment->ticket_id = $ticket_id;
+                $ticketComment->user_id =  Auth::user()->id;
+                $ticketComment->comment = addslashes(htmlspecialchars(strip_tags($comment)));
+                $dt = new DateTime();
+                $ticketComment->created_at = $dt->format('Y-m-d H:i:s');
+                echo json_encode($ticketComment);
+                if ($ticketComment->save()){
+                    Response::make(json_encode($ticketComment));
+                }else{
+
+                }
+            }
+        }));
+
+
+
         Route::controller('search','SearchController');
         /**
          *  Вытащить файл

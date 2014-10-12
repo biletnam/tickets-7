@@ -18,4 +18,31 @@ jQuery(function ($) {
 
 		return false;
 	});
+
+    $('#commentForm').submit(function(e){
+        e.preventDefault();
+        self = $(this);
+        var obj ={};
+        obj.comment = $(this).find('[name="comment"]').val();
+        obj.ticket_id = $(this).find('[name="ticket_id"]').val();
+        obj._token = $(this).find('[name="_token"]').val();
+        obj._method = "post";
+        if (obj.comment.trim().length==0) return alert('Введите комментраий');
+        jQuery.ajax({
+            type:"post",
+            url:self.attr('href'),
+            data:obj,
+            success: function(data){
+                    try{
+                        if(data =  JSON.parse(data)){
+                            self.html('Комментарий оставлен.');
+                        }
+                    }catch(ex){
+                        consol.log(ex);
+                    }
+                }
+            }
+        )
+    })
 });
+

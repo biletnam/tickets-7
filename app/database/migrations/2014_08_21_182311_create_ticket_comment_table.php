@@ -13,13 +13,12 @@ class CreateTicketCommentTable extends Migration {
 	public function up()
 	{
 		Schema::create('ticket_comments',function($table){
+                $table->increments('id');
                 $table->integer('ticket_id');
                 $table->integer('user_id');
                 $table->text('comment');
                 $table->softDeletes();
                 $table->timestamps();
-
-
 
             });
 	}

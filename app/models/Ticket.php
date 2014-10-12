@@ -54,4 +54,9 @@ class Ticket extends \Eloquent {
     {
         return $this->belongsTo('Priority')->select('title')->orderBy('order','asc');
     }
+
+    public function commets()
+    {
+        return $this->hasMany('TicketComment');
+    }
 }
