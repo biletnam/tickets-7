@@ -71,7 +71,7 @@ $comments  =$ticket->commets()->get();
 <?php
 if(!empty($comments)):?>
 <div class="comments">
-    <?foreach($commentso as $comment){?>
+    <?foreach($comments as $comment){?>
         <div class="comment <?=Auth::user()->role?>">
             <p clas="about"><span class="date"><?$dt = new DateTime($comment->created_at); echo $dt->format('d.m.Y H:i')?></span> <span class="author"><?=$comment->user->full_name?></span></p>
             <div>{{$comment->comment}}</div>
