@@ -4,7 +4,7 @@
 <p class="message">
     {{$exception->getMessage()}}
 </p>
-<?
+<?php
 if(!empty(Auth::user()) && Auth::user()->role=="admin" ) var_dump($exception);
 ?>
 
