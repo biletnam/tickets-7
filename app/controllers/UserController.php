@@ -96,21 +96,26 @@ class UserController extends \BaseController {
 
         $rules = array(
             'phone'                 => 'required|numeric',
-            'email'                 => 'required|between:3,64|email|unique:email',
+            'email'                 => 'required|between:3,64|email|unique:users',
             'password'              => 'required|alpha_num|between:4,8|confirmed',
             'password_confirmation' => 'required|alpha_num|between:4,8'
         );
 
         $validator = Validator::make(Input::all(), $rules);
 
+
+
         if ($validator->passes()) {
+
             if(Input::get('phone') && $user->phone!==Input::get('phone')){
                 $changes["phone"] = 'Телефон изменен, с '.$user->phone.' на '.Input::get('phone');
                 $user->phone = Input::get('phone');
             }
             if(Input::get('email') && $user->email!==Input::get('email')){
+
                 $changes["email"] = 'Email изменен, с '.$user->email.' на '.Input::get('email');
                 $user->email = Input::get('email');
+
             }
             if(Input::get('password') && Input::get('password_confirmation')){
                 $changes["password"] = 'Пароль изменен';
@@ -140,8 +145,14 @@ class UserController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		User::find($id)->delete();
-        return Redirect::route('user.index');
+
+        if($id == 1){
+            App::abort('500','Не возможно удалить первого пользователя');
+        }else{
+            User::find($id)->delete();
+            return Redirect::route('user.index');
+        }
+
 	}
 
 }

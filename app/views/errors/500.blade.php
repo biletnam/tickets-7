@@ -5,6 +5,6 @@
     {{$exception->getMessage()}}
 </p>
 <?php
-  if(!empty(Auth::user()) && Auth::user()->role=="admin" ) var_dump($exception);
+  if(!empty(Auth::user()) && Auth::user()->role=="admin" && Config::get('app.debug') ) var_dump($exception);
 ?>
 @stop
