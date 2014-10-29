@@ -62,7 +62,7 @@ class TicketController extends \BaseController {
 
         if(!$validate->fails()){
             $ticket = Ticket::create(Input::all());
-            $ticket->user_id = Auth::user()->id;
+            //$ticket->user_id = Auth::user()->id;
             if ($ticket->save()){
                 if(Input::hasFile('file_path')){
                     $path = base_path().'/support.web-kmv.ru/files/';
@@ -146,7 +146,7 @@ class TicketController extends \BaseController {
 
             if(Input::get("price") && $ticket->price !=Input::get("price") && Auth::user()->role=='admin'){
                 $ticket->price = Input::get("price");
-                $change = array('status_id'=>'Стоимость выполнения задачи изменен');
+                $change = array('status_id'=>'Стоимость выполнения задачи изменена');
             }
 
             if(Input::get("apply") && $ticket->price !=Input::get("apply")){

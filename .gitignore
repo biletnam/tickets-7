@@ -1,4 +1,5 @@
 /app/storage/search
+/app/storage/
 /app/config/
 /app/config/local
 /bootstrap/compiled.php

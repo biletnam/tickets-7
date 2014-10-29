@@ -38,6 +38,7 @@
                 </li>
             @endforeach
         </ul>
+        {{Form::hidden('user_id',Auth::user()->id)}}
         {{ Form::submit('Добавить задачу',['class'=>'add-work'])}}
     </div>
     {{ Form::close() }}
