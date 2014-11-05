@@ -11,13 +11,13 @@ Event::listen('eloquent.created: Ticket',function(Ticket $ticket){
 Event::listen('eloquent.updated: Ticket',function(Ticket $ticket){
     $status='';
     $old = $ticket->getOriginal();
-    if($old["price"]!=$ticket->price){
+    if(!empty($old["price"]) && $old["price"]!=$ticket->price){
         $status ="Установлена стоимость работ";
     }
-    if($old["apply"]!=$ticket->apply){
+    if(!empty($old["apply"]) &&  $old["apply"]!=$ticket->apply){
         $status ="Задача одобрена клиентом";
     }
-    if($old["status_id"]!=$ticket->status_id){
+    if(!empty($old["status_id"]) &&  $old["status_id"]!=$ticket->status_id){
         $stat = Status::find($old["status_id"]);
         $status ="Статус задачи изменен с ".$stat->title."на".$ticket->status->title;
     }
