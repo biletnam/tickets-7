@@ -13,7 +13,7 @@
     <div class="wrapper">
         <header class="header">
             <div class="top-header">
-                <a class="logo" href="#"></a>
+                <a class="logo" href="/"></a>
                 @if (Auth::check())
                     <nav>
                         <ul>

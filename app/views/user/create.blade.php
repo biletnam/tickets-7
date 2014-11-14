@@ -21,22 +21,22 @@
                 {{Form::text('phone')}}
                 <label class="error">{{ $errors->first('phone') }}</label>
             </li>
-            <li>
+            <li class="password-me">
                 <label>Пароль:</label>
                 {{Form::password('password')}}
                 <label class="error">{{ $errors->first('password') }}</label>
             </li>
-            <li>
+            <li class="password-me">
                 <label>Подтверждение пароля:</label>
                 {{Form::password('password_confirmation')}}
                 <label class="error">{{ $errors->first('password_confirmation') }}</label>
             </li>
-            <li>
+            <li class="select-s">
                 <label>Права:</label>
                 {{Form::select('role',array('user'=>'Клиент','admin'=>'Администратор'))}}
                 <label class="error">{{ $errors->first('role') }}</label>
             </li>
-            <li>
+            <li class="add-worl-me">
                 {{ Form::submit('Добавить клиента',['class'=>'add-work'])}}
             </li>
         </ul>

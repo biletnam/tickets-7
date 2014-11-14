@@ -39,7 +39,9 @@
             @endforeach
         </ul>
         {{Form::hidden('user_id',Auth::user()->id)}}
+        <div class="my_btn sui">
         {{ Form::submit('Добавить задачу',['class'=>'add-work'])}}
+        </div>
     </div>
     {{ Form::close() }}
 </div>

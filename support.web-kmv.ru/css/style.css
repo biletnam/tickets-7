@@ -50,6 +50,9 @@ html {
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
 	display: block;
 }
+a {
+    color: #f75931;
+}
 body {
 	font: 12px/18px 'Noto Sans', sans-serif;
 	width: 100%;
@@ -241,7 +244,7 @@ a:hover {
 	font-size: 13px;
 	color: #918c8c;
 	padding: 10px;
-	height: 10px;
+	height: 12px;
 	margin-bottom: 12px;
 }
 .content .inner-content .form-block input[type="button"],input[type="submit"] {
@@ -508,7 +511,7 @@ tr.last-border td {
 }
 .form-add-block .left-form ul li input[type="text"] {
 	width: 360px;
-	height: 10px;
+	height: 12px;
 	padding: 8px 10px;
 	border: 1px solid #cccccc;
 	border-radius: 3px;
@@ -808,4 +811,168 @@ span.add-file span {
 	position: absolute;
 	top: -19px;
 	left: -40px;
+}
+.pagination {
+    font-size: 15px;
+    text-align: center;
+}
+.pagination li {
+    display: inline-block;
+    *display: block;
+    zoom: 1;
+    padding: 5px;
+}
+.pagination li a {
+    color: #000;
+    text-decoration: none;
+}
+.pagination .active {
+    color: #f75931;
+}
+.bold1 {
+    font-weight: bold;
+}
+.gluper .add-work {
+    margin-top: 10px;
+}
+.stroger {
+    margin: 0!important;
+}
+.slister {
+    width: 60px;
+    display: inline-block;
+    *display: block;
+    zoom: 1;
+}
+.draser {
+    width: 241px;
+}
+.draser p {
+    padding-bottom: 8px;
+}
+.stroger li {
+    margin-bottom: 5px!important;
+}
+.my_btn {
+    width: 239px!important;
+}
+.my_btn input {
+    text-align: center;
+    width: 100%!important;
+}
+.prosmotr_me {
+    color: #f75931;
+}
+.edit_me {
+    color: #000;
+}
+.filter input {
+    border: 1px solid #ccc;
+}
+.super-grey {
+    margin-bottom: 5px!important;
+}
+.slisters {
+    width: 241px;
+    clear: both;
+}
+.slisters form {
+    padding-top: 13px;
+}
+.slisters p {
+    padding-bottom: 8px;
+}
+.slisters input {
+    width: 175px;
+}
+.slisters input.btn {
+    margin-top: 8px;
+    width: 100%;
+}
+.table-sop {
+    margin: 10px auto 0!important;
+}
+.action-btn {
+    text-align: center;
+}
+.action-btn form {
+    display: inline;
+    padding-left: 2px;
+}
+.action-btn form input[type="submit"] {
+    width: 16px;
+    height: 16px;
+    background: url("/images/delete.png") no-repeat;
+    text-indent: -9999px;
+    border: none;
+}
+.action-btn a {
+    margin-left: 2px;
+}
+.bn-wp {
+    width: 890px;
+    margin: 0 auto;
+}
+.draser input
+{
+    width: 175px;
+}
+.draser select {
+    width: 179px;
+}
+.password-me input{
+    width: 360px!important;
+}
+.select-s select {
+    height: 30px;
+}
+.add-worl-me {
+    margin-top: 20px;
+}
+.add-worl-me .add-work {
+    padding-left: 0!important;
+    text-align: center;
+    padding-right: 0!important;
+    margin-top: 10px!important;
+    width: 173px;
+    float: left;
+}
+.ska input {
+    margin-top: 10px;
+}
+.openss li {
+    margin-bottom: 2px;
+}
+.start_up {
+    margin-top: 15px;
+}
+.sui input {
+    margin-top: 10px;
+}
+.stricker .add-work {
+    width: 175px;
+    float: left;
+    margin-bottom: 15px;
+    padding-left: 0!important;
+    text-align: center;
+    padding-right: 0!important;
+}
+.form-comment input[type="submit"] {
+    width: 175px;
+    margin-top: 13px;
+}
+.form-comment textarea {
+    width: 500px;
+    height: 100px;
+    resize: none;
+    margin-top: 10px;
+}
+.stroper {
+    margin-left: 0!important;
+}
+.uio .add-work {
+    margin-top: 10px;
+}
+.opinion input[type="password"] {
+    width: 360px;
 }

@@ -7,24 +7,26 @@
 @endif
 <div class="gray-line"></div>
 <div class="admin-block">
-    <div class="admin-img">
-        <img src="images/admin.jpg" alt=""/>
-    </div>
-    <div class="admin-name">
-        <h4>Имя администратора</h4>
-        <a class="add-client" href="{{URL::route('user.create')}}">Добавить клиента</a>
-        <ul>
-            <li><a href="<?=URL::route('ticket.index',array('status_id'=>1))?>">Новые ({{$countNew}})</a></li>
-        </ul>
-        <div class="filter">
-            {{ Form::open(array('route' =>array('ticket.index'),"role"=>"form","method"=>"get"))}}
-            <p>Номер:{{Form::text('id',Input::get('id'))}}</p>
-            <p>Статус:{{Form::select('status_id', array_merge(array('0'=>'все'),$status),Input::get('status_id',0));}}</p>
-            <p>Дата c:{{Form::text('dt_from',Input::get('dt_from'))}}</p>
-            <p>Дата по:{{Form::text('dt_to',Input::get('dt_to'))}}</p>
-            <p>{{ Form::submit('Фильтровать',['class'=>'btn'])}}</p>
-            <p><a href="/ticket/">Очистить</a></p>
-            {{Form::close();}}
+    <div class="bn-wp">
+        <div class="admin-img">
+            <img src="images/admin.jpg" alt=""/>
+        </div>
+        <div class="admin-name">
+            <h4>Имя администратора</h4>
+            <a class="add-client" href="{{URL::route('user.create')}}">Добавить клиента</a>
+            <ul class="stroger">
+                <li><a href="<?=URL::route('ticket.index',array('status_id'=>1))?>">Новые ({{$countNew}})</a></li>
+            </ul>
+            <div class="filter draser">
+                {{ Form::open(array('route' =>array('ticket.index'),"role"=>"form","method"=>"get"))}}
+                <p><span class="slister">Номер:</span>{{Form::text('id',Input::get('id'))}}</p>
+                <p><span class="slister">Статус:</span>{{Form::select('status_id', array_merge(array('0'=>'все'),$status),Input::get('status_id',0));}}</p>
+                <p><span class="slister">Дата c:</span>{{Form::text('dt_from',Input::get('dt_from'))}}</p>
+                <p><span class="slister">Дата по:</span>{{Form::text('dt_to',Input::get('dt_to'))}}</p>
+                <p class="my_btn">{{ Form::submit('Фильтровать',['class'=>'btn'])}}</p>
+                <p><a href="/ticket/">Очистить</a></p>
+                {{Form::close();}}
+            </div>
         </div>
     </div>
 </div>
@@ -33,12 +35,12 @@
 <table>
     <thead>
     <tr>
-        <td class="number"><span class="left-sp"></span>Номер</td>
+        <td class="number"><!--<span class="left-sp"></span>-->Номер</td>
         <td class="data">дата</td>
         <td class="task">Задача</td>
         <td class="clients">клиент</td>
         <td class="status">Статус</td>
-        <td><span class="right-sp"></span></td>
+        <td>Действия<!--span class="right-sp"></span>--></td>
     </tr>
     </thead>
     <tbody class="tbody">
@@ -52,19 +54,19 @@
             <td><?=!empty($ticket->title)?$ticket->title:""?></td>
             <td><?=!empty($ticket->user->full_name)? $ticket->user->full_name:'' ?></td>
             <td><?=!empty($status[$ticket->status_id])?$status[$ticket->status_id]:''?></td>
-            <td><a href="{{URL::route('ticket.show',array('id'=>$ticket->id))}}">Просмотр</a> <a href="{{URL::route('ticket.edit',array('id'=>$ticket->id))}}">Редактировать</a></td>
+            <td><a class="prosmotr_me" href="{{URL::route('ticket.show',array('id'=>$ticket->id))}}">Просмотр</a> <a class="edit_me" href="{{URL::route('ticket.edit',array('id'=>$ticket->id))}}">Редактировать</a></td>
         </tr>
         <?$k++;?>
     <?php endforeach;?>
     </tbody>
     <tfoot>
     <tr>
-        <td><span class="left-sp"></span></td>
+        <td><!--<span class="left-sp"></span>--></td>
         <td></td>
         <td></td>
         <td></td>
         <td></td>
-        <td><span class="right-sp"></span></td>
+        <td><!--<span class="right-sp"></span>--></td>
     </tr>
     </tfoot>
 </table>

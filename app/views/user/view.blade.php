@@ -18,19 +18,19 @@
     @endif
     <ul>
         <li>
-            <label>Телефон:</label>
+            <label class="bold1">Телефон:</label>
             {{$user->phone}}
         </li>
         <li>
-            <label>E-mail:</label>
+            <label class="bold1">E-mail:</label>
             {{$user->email}}
         </li>
         <li>
-            <label>Баланс:</label>
+            <label class="bold1">Баланс:</label>
             {{$user->balance}}
         </li>
         <li>
-            <label>Права:</label>
+            <label class="bold1">Права:</label>
             {{$user->role=="admin"? "Администратор":"Клиент"}}
         </li>
     </ul>

@@ -12,11 +12,11 @@
     <div class="view-block">
         <ul>
             @if(!empty($ticket->title))
-            <li><label class="label">Название:</label> <span>{{$ticket->title}}</span></li>
+            <li><label class="label bold1">Название:</label> <span>{{$ticket->title}}</span></li>
             @endif
 
             @if(!empty($ticket->url))
-            <li><label>URL:</label>: <span><a href="{{$ticket->url}}">{{$ticket->url}}</a></span></li>
+            <li><label class="bold1">URL:</label> <span><a href="{{$ticket->url}}">{{$ticket->url}}</a></span></li>
             @endif
 
             @if(!empty($ticket->description))
@@ -29,15 +29,15 @@
                 <?/*<li><a target="_blank" href="{{URL::to('manager',array('ticket'=>$ticket->id))}}">Файл</a></li>*/?>
             @endif
 
-            <li><label>Приоритет</label>: <span>{{$ticket->priority->title}}</span></li>
-            <li><label>Статус</label>: <span>{{$ticket->status->title}}</span></li>
-            <li><label>Дата создания</label>: <span><?$dt = new DateTime($ticket->created_at); echo  $dt->format('d.m.Y H:i')?></span></li>
-            <li><label>Стоимость работы</label>: <span><?=number_format($ticket->price,0,'',' ')?></span></li>
+            <li><label class="bold1">Приоритет</label>: <span>{{$ticket->priority->title}}</span></li>
+            <li><label class="bold1">Статус</label>: <span>{{$ticket->status->title}}</span></li>
+            <li><label class="bold1">Дата создания</label>: <span><?$dt = new DateTime($ticket->created_at); echo  $dt->format('d.m.Y H:i')?></span></li>
+            <li><label class="bold1">Стоимость работы</label>: <span><?=number_format($ticket->price,0,'',' ')?></span></li>
             @if(Auth::user()->role=='admin')
-            <li><label>Cтатус подтверждения заказчиком</label>: <span><?=$ticket->apply==0 ? "Не подтвержден":"Подтвержден"?></span></li>
+            <li><label class="bold1">Cтатус подтверждения заказчиком</label>: <span><?=$ticket->apply==0 ? "Не подтвержден":"Подтвержден"?></span></li>
             @else
                 @if($ticket->apply==0)
-                <li>
+                <li class="gluper stricker">
                     {{Form::model($ticket,array('route' => array('ticket.update',"ticket"=>$ticket->id),"role"=>"form","method"=>"PUT"))}}
                         {{Form::hidden('apply',1)}}
                         {{ Form::submit('Подтвердить',['class'=>'add-work'])}}
@@ -48,7 +48,7 @@
         </ul>
     </div>
 </div>
-<h3 class="comment-title">
+<h3 class="comment-title stroper">
     Комментарии
 </h3>
 <div class="form-comment">
