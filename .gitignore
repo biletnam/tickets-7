@@ -1,4 +1,4 @@
-/app/storage/search
+/app/storage/search/
 /app/storage/
 /app/config/
 /app/config/local
@@ -14,3 +14,7 @@ composer.lock
 .env.php
 .DS_Store
 Thumbs.db
+
+*.gen
+
+*.file
