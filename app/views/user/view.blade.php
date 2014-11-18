@@ -33,6 +33,9 @@
             <label class="bold1">Права:</label>
             {{$user->role=="admin"? "Администратор":"Клиент"}}
         </li>
+        <?if(!empty($user->img)):?>
+        <li><img src="/files/{{$user->img}}" width="300"></li>
+        <?endif;?>
     </ul>
 
 </div>

@@ -31,13 +31,15 @@
             <div class="orang-block">
                 <div class="inner-orang-block">
                     <span class="personal-account">Личный кабинет клиента</span>
-                    <span class="search-number-keyword">Поиск по номеру или слову</span>
-                    <div class="search-form">
-                        {{Form::open(array('url'=>'search/index','method'=>'get'))}}
-                            {{Form::text('q',Input::get('q'))}}
-                            {{Form::submit('Поиск')}}
-                        {{Form::close()}}
-                    </div>
+                    @if(Auth::check() && Auth::user()->role=="admin")
+                        <span class="search-number-keyword">Поиск по номеру или слову</span>
+                        <div class="search-form">
+                            {{Form::open(array('url'=>'search/index','method'=>'get'))}}
+                                {{Form::text('q',Input::get('q'))}}
+                                {{Form::submit('Поиск')}}
+                            {{Form::close()}}
+                        </div>
+                    @endif
                     <span class="head-rog"></span>
                 </div>
             </div>

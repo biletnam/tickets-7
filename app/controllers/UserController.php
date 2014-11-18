@@ -39,9 +39,9 @@ class UserController extends \BaseController {
             'full_name'             => 'required',
             'role'                  => 'required',
             'phone'                 => 'required|numeric',
-            'email'                 => 'required|between:3,64|email|unique:users',
             'password'              => 'required|alpha_num|between:4,8|confirmed',
-            'password_confirmation' => 'required|alpha_num|between:4,8'
+            'password_confirmation' => 'required|alpha_num|between:4,8',
+            'img'                   => 'max:1000'
         );
 
         $validator = Validator::make(Input::all(), $rules);
@@ -50,9 +50,16 @@ class UserController extends \BaseController {
             $user->password = Hash::make(Input::get('password'));
             $user->save();
 
+            if(Input::hasFile('img')){
+                $path = base_path().'/support.web-kmv.ru/files/';
+                $name = $filename = Str::random(20) . '.' . Input::file('img')->guessExtension();
+                Input::file('img')->move($path,$name);
+                $user->img =$name;
+                $user->save();
+            }
             return Redirect::route('user.show',$user->id)->with(compact('user'));
-        } else {
-            return Redirect::route('user.create')->withInput(Input::except('_token','password','password_confirmation'))->withErrors($validator);
+        }else {
+            return Redirect::route('user.create')->withInput(Input::except('_token','password','password_confirmation','img'))->withErrors($validator);
         }
 	}
 
@@ -96,11 +103,17 @@ class UserController extends \BaseController {
 
         $rules = array(
             'phone'                 => 'required|numeric',
-            'email'                 => 'required|between:3,64|email|unique:users',
-            'password'              => 'required|alpha_num|between:4,8|confirmed',
-            'password_confirmation' => 'required|alpha_num|between:4,8'
+            'img'                   => 'max:1000'
         );
-
+        $email=Input::get('email',null);
+        if($email!=$user->email){
+            $rules['email']= 'required|between:3,64|email|unique:users';
+        }
+        $password =Input::get('password',null);
+        if( trim($password)!=''){
+            $rules['password']= 'required|alpha_num|between:4,8|confirmed';
+            $rules['password_confirmation']= 'required|alpha_num|between:4,8';
+        }
         $validator = Validator::make(Input::all(), $rules);
 
 
@@ -129,7 +142,15 @@ class UserController extends \BaseController {
             }else{
                 Session::flash('error','Изменеий не внесено');
             }
+
+            if(Input::hasFile('img')){
+                $path = base_path().'/support.web-kmv.ru/files/';
+                $name = $filename = Str::random(20) . '.' . Input::file('img')->guessExtension();
+                Input::file('img')->move($path,$name);
+                $user->img =$name;
+            }
             $user->save();
+
             return Redirect::route('user.show',$id)->with(compact('user'));
         } else {
             return Redirect::route('user.edit',$id)->withErrors($validator);

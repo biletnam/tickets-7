@@ -9,7 +9,7 @@
 <div class="admin-block">
     <div class="bn-wp">
         <div class="admin-img">
-            <img src="images/admin.jpg" alt=""/>
+            <img src="<?=!empty(Auth::user()->img)? '/files/'.Auth::user()->img:'images/admin.jpg'?>" width="250px;" alt=""/>
         </div>
         <div class="admin-name">
             <h4>Имя администратора</h4>

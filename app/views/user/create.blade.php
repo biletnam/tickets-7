@@ -3,7 +3,7 @@
 <h3>добавить пользователя</h3>
 <div class="gray-line"></div>
 <div class="form-add-block">
-    {{ Form::model($user,array('route' => array('user.store'),"role"=>"form"))}}
+    {{ Form::model($user,array('route' => array('user.store'),"role"=>"form",'files'=>true))}}
     <div class="left-form">
         <ul>
             <li>
@@ -36,9 +36,15 @@
                 {{Form::select('role',array('user'=>'Клиент','admin'=>'Администратор'))}}
                 <label class="error">{{ $errors->first('role') }}</label>
             </li>
+            <li>
+                <span class="bold1">Картинка:</span><br/>
+                {{Form::file('img')}}
+                <label class="error">{{ $errors->first('img') }}</label>
+            </li>
             <li class="add-worl-me">
                 {{ Form::submit('Добавить клиента',['class'=>'add-work'])}}
             </li>
+
         </ul>
     </div>
     {{ Form::close() }}
