@@ -3,7 +3,7 @@
 @section('content')
 <p class="slogon">Студия осуществляет техническую поддержку сайтов <br/>на любых системах управления, в том числе и самописных.</p>
 <p class="orange-text">Особенно любим:</p>
-<p class="cms"><span>1C-Битрикс</span>    <span>Joomla</span>    <span>Wordpress</span></p>
+<p class="cms"><span>1C-Битрикс</span>   <!-- <span>Joomla</span>    <span>Wordpress</span>--></p>
 <div class="line"></div>
 <ul class="processing-time">
     <li><strong>Срок обработки</strong> заявки в будние дни - 1 час.</li>

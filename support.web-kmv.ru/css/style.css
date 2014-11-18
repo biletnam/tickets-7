@@ -302,7 +302,7 @@ a:hover {
     color: #6a6262;
     font-weight: bold;
     text-transform: uppercase;
-    margin: 0 0 0 21px;
+    margin: 0 0 0 26px;
 }
 .content .admin .gray-line {
     border-top: 5px solid #f5f5f5;
@@ -975,4 +975,61 @@ span.add-file span {
 }
 .opinion input[type="password"] {
     width: 360px;
+}
+.zadach-block-me textarea {
+    width: 871px!important;
+}
+textarea {
+    resize: none;
+}
+.comment-me {
+    margin-top: 5px;
+}
+.comment-error {
+    color: red;
+    margin-top: 14px;
+}
+.red-btn-me {
+    line-height: 18px!important;
+}
+.view-block-me {
+    font-size: 13px;
+}
+.bn-wp-me {
+    margin-bottom: 5px;
+}
+.clear {
+    clear: both;
+}
+.zadach-block-me {
+    margin-top: 15px!important;
+    border-radius: 5px;
+    border: 1px solid #e3e3e3;
+    background: #f5f5f5;
+    padding: 17px!important;
+    padding-top: 11px!important;
+}
+.zadach-block-me .white-bock {
+    margin-top: 0!important;
+}
+.bn-wp-me .admin-name {
+    width: 500px!important;
+}
+.comments-me {
+    color: #a8a8a8;
+    font-weight: bold;
+    display: block;
+    padding-bottom: 8px!important;
+}
+.view-block-me > p {
+    margin-bottom: 5px;
+}
+.create-ticket {
+    margin-top: 5px;
+    color: red;
+}
+.view-block-me .add-work {
+    width: auto!important;
+    margin-top: 0!important;
+    float: left;
 }

@@ -35,7 +35,10 @@ jQuery(function ($) {
             success: function(data){
                     try{
                         if(data =  JSON.parse(data)){
-                            self.html('Комментарий оставлен.');
+                            /*self.html('Комментарий оставлен.');*/
+                            $(".white-bock").append('<div class="section"><img alt="" src="/images/pic1.jpg"><h5>Ваше сообщение</h5><p>'+data.comment+'</p><span class="time">'+data.created_at+'</span></div>');
+                            $(".white-bock").animate({"scrollTop": $('.white-bock')[0].scrollHeight}, "slow");
+                            $('.comment-error').html('Комментарий оставлен.');
                         }
                     }catch(ex){
                         consol.log(ex);

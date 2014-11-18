@@ -49,11 +49,11 @@
     $k = 0;
     foreach($tickets as $ticket):?>
         <tr class="<?if($k==0):?>table-info-user<?endif;?> <?if($k+1==count($ticket)):?>last-border<?endif;?>">
-            <td><?=$ticket->id?></td>
-            <td><?php $dt = new DateTime($ticket->created_at); echo $dt->format('d.m.Y')?></td>
-            <td><?=!empty($ticket->title)?$ticket->title:""?></td>
-            <td><?=!empty($ticket->user->full_name)? $ticket->user->full_name:'' ?></td>
-            <td><?=!empty($status[$ticket->status_id])?$status[$ticket->status_id]:''?></td>
+            <td onclick="location.href='{{URL::route('ticket.show',array('id'=>$ticket->id))}}'"><?=$ticket->id?></td>
+            <td onclick="location.href='{{URL::route('ticket.show',array('id'=>$ticket->id))}}'"><?php $dt = new DateTime($ticket->created_at); echo $dt->format('d.m.Y')?></td>
+            <td onclick="location.href='{{URL::route('ticket.show',array('id'=>$ticket->id))}}'"><?=!empty($ticket->title)?$ticket->title:""?></td>
+            <td onclick="location.href='{{URL::route('ticket.show',array('id'=>$ticket->id))}}'"><?=!empty($ticket->user->full_name)? $ticket->user->full_name:'' ?></td>
+            <td onclick="location.href='{{URL::route('ticket.show',array('id'=>$ticket->id))}}'"><?=!empty($status[$ticket->status_id])?$status[$ticket->status_id]:''?></td>
             <td><a class="prosmotr_me" href="{{URL::route('ticket.show',array('id'=>$ticket->id))}}">Просмотр</a> <a class="edit_me" href="{{URL::route('ticket.edit',array('id'=>$ticket->id))}}">Редактировать</a></td>
         </tr>
         <?$k++;?>

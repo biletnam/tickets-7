@@ -2,7 +2,9 @@
 @section('content')
 <h3 class="bn-wp">Задачи</h3>
 @if(Session::has('ticket.create'))
+<div class="create-ticket bn-wp">
 {{Session::get('ticket.create')}}
+</div>
 @endif
 <div class="bn-wp start_up">
     <a href="{{URL::route('ticket.index',array('apply'=>0))}}" class="button">Задачи требующие подтверждения</a>
@@ -24,10 +26,10 @@
     $k = 0;
     foreach($tickets as $ticket):?>
         <tr class="<?if($k==0):?>table-info-user<?endif;?> <?if($k+1==count($ticket)):?>last-border<?endif;?>">
-            <td><?=$ticket->id?></td>
-            <td><?=$ticket->title?></td>
-            <td><?=$status[$ticket->status_id]?></td>
-            <td><?=number_format($ticket->price,0,'',' ')?></td>
+            <td onclick="location.href='{{URL::route('ticket.show',array('id'=>$ticket->id))}}'"><?=$ticket->id?></td>
+            <td onclick="location.href='{{URL::route('ticket.show',array('id'=>$ticket->id))}}'"><?=$ticket->title?></td>
+            <td onclick="location.href='{{URL::route('ticket.show',array('id'=>$ticket->id))}}'"><?=$status[$ticket->status_id]?></td>
+            <td onclick="location.href='{{URL::route('ticket.show',array('id'=>$ticket->id))}}'"><?=number_format($ticket->price,0,'',' ')?></td>
             <td><a href="{{URL::route('ticket.show',array('id'=>$ticket->id))}}">Просмотр</a></td>
         </tr>
         <?$k++;?>
