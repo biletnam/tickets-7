@@ -16,6 +16,7 @@
         <p><span class="slister">ФИО:</span>{{Form::text('full_name',Input::get('full_name'))}}</p>
         <p><span class="slister">E-mail:</span>{{Form::text('email',Input::get('email'))}}</p>
         <p><span class="slister">Телефон:</span>{{Form::text('phone',Input::get('phone'))}}</p>
+        <p><span class="slister">Роль:</span>{{Form::select('role',['0'=>'Любой','admin'=>'Администратор','user'=>'Клиент'],Input::get('role',0))}}</p>
         <p><span>{{ Form::submit('Фильтровать',['class'=>'btn'])}}</p>
         <p><a href="/user/">Очистить</a></p>
         {{Form::close();}}
@@ -65,5 +66,8 @@
     </tfoot>
 </table>
 {{$users->links()}}
+<p>На странице: {{$users->count()}}, Всего: {{$users->getTotal()}}</p>
 @endif
+
+
 @stop

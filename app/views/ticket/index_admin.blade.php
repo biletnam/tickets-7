@@ -21,6 +21,7 @@
                 {{ Form::open(array('route' =>array('ticket.index'),"role"=>"form","method"=>"get"))}}
                 <p><span class="slister">Номер:</span>{{Form::text('id',Input::get('id'))}}</p>
                 <p><span class="slister">Статус:</span>{{Form::select('status_id', array_merge(array('0'=>'все'),$status),Input::get('status_id',0));}}</p>
+                <p><span class="slister">Клиент:</span>{{Form::select('user_id', array_merge(array(''=>'любой'),User::where('role','!=','admin')->lists('full_name','id')),Input::get('user_id',''));}}</p>
                 <p><span class="slister">Дата c:</span>{{Form::text('dt_from',Input::get('dt_from'))}}</p>
                 <p><span class="slister">Дата по:</span>{{Form::text('dt_to',Input::get('dt_to'))}}</p>
                 <p class="my_btn">{{ Form::submit('Фильтровать',['class'=>'btn'])}}</p>
@@ -71,5 +72,6 @@
     </tfoot>
 </table>
 {{$tickets->links()}}
+<p>На странице: {{$tickets->count()}}, Всего: {{$tickets->getTotal()}}</p>
 @endif
 @stop

@@ -42,6 +42,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
             $query->where('email','like',"%".Input::get('email')."%");
         }
 
+        if(Input::get('role',false)){
+            $query->where('role','=',Input::get('role'));
+        }
+
         if(Input::get('phone')){
             $query->where('phone','like',"%".Input::get('phone')."%");
         }

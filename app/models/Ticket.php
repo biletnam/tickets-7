@@ -7,6 +7,8 @@ class Ticket extends \Eloquent {
         if (Auth::user()->role!=="admin")
         {
             $query->where('user_id','=',Auth::user()->id);
+        }elseif(Auth::user()->role=="admin" && Input::get('user_id',false)){
+            $query->where('user_id','=',Input::get('user_id'));
         }
         if(Input::get('status_id') && is_numeric((int)Input::get('status_id'))){
             if(is_array(Input::get("status_id"))) $query->whereIn('status_id',Input::get('status_id'));
@@ -42,7 +44,7 @@ class Ticket extends \Eloquent {
 
     public function user()
     {
-        return $this->belongsTo('User')->select('full_name','email')->remember(10);
+        return $this->belongsTo('User')->select('full_name','email','img')->remember(10);
     }
 
     public function status()

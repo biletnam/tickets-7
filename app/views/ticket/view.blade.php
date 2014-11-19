@@ -4,7 +4,11 @@
 <div class="gray-line"></div>
 <div class="bn-wp-me">
     <div class="admin-img">
-        <img alt="" src="/images/admin.jpg">
+        @if(!empty($ticket->user->img))
+            <img alt="" src="/files/{{$ticket->user->img}}" width="300">
+        @else
+            <img alt="" src="/images/admin.jpg">
+        @endif
     </div>
     <div class="admin-name">
         <div class="form-add-block">
