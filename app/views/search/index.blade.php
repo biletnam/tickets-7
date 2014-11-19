@@ -4,13 +4,28 @@
 <h3>Поиск по результату @if($q) ,{{$q}} @endif</h3>
 <div class="gray-line"></div>
 <div class="search-list">
-    {{var_dump($dbResult)}};
-    @foreach($dbResult as $item)
-        <div class="elment">
-            <p><label>Имя:</label> <span></span></p>
-            <p><label>Телефон:</label> <span></span></p>
-            <p><label>Email:</label> <span></span></p>
-        </div>
-    @endforeach
+@if(empty($data))
+    По запросу "{{$q}}" ничего не найдено.
+@else
+   <articles>
+        @foreach($data as $ticket)
+            <article>
+                <a href="{{URL::route('ticket.show',array('id'=>$ticket->id))}}">№ {{$ticket->id}}</a> {{preg_replace('/('.$q.')/i','<span style="background:#ACE1AF">\1</span>',$ticket->title)}}
+
+                <?$descF=preg_match('/('.$q.')/i',$ticket->description);?>
+                @if(!empty($descF))
+                    <?$pos = strpos(preg_replace('/('.$q.')/i','<span style="background:#ACE1AF">\1</span>',$ticket->description),'<span');?>
+                    <p>{{substr(preg_replace('/('.$q.')/i','<span style="background:#ACE1AF">\1</span>',$ticket->description),$pos>51?($pos-50):0,35+strlen($q)+35)}}</p>
+                @endif
+                <?$commentF = preg_match('/('.$q.')/i',$ticket->comment);?>
+                @if(!empty($commentF))
+                    <?$pos = strpos(preg_replace('/('.$q.')/i','<span style="background:#ACE1AF">\1</span>',$ticket->comment),'<span');?>
+                    <p>{{substr(preg_replace('/('.$q.')/i','<span style="background:#ACE1AF">\1</span>',$ticket->comment),$pos>51?($pos-50):0,35+strlen($q)+35)}}</p>
+                @endif
+            </article>
+        @endforeach
+   </articles>
+   {{$data->appends(array('q' => $q))->links()}}
+@endif
 </div>
 @stop

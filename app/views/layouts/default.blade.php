@@ -32,7 +32,7 @@
                 <div class="inner-orang-block">
                     <span class="personal-account">Личный кабинет клиента</span>
                     @if(Auth::check() && Auth::user()->role=="admin")
-                        <span class="search-number-keyword">Поиск по номеру или слову</span>
+                        <span class="search-number-keyword">Поиск по задачам</span>
                         <div class="search-form">
                             {{Form::open(array('url'=>'search/index','method'=>'get'))}}
                                 {{Form::text('q',Input::get('q'))}}
