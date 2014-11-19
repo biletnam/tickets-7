@@ -59,24 +59,28 @@
     <div class="clear"></div>
 </div>
 
-<div class="zadach-block-me <?=Auth::user()->role?>">
+<div class="zadach-block-me {{Auth::user()->role}}">
     <span class="comments-me">Комментарии</span>
     <div class="clearfix"></div>
     <div class="white-bock">
         <?php
         $comments  =$ticket->commets()->get();
         ?>
-        <?php
-        if(!empty($comments)):?>
-            <?foreach($comments as $comment){?>
+
+        @if(!empty($comments))
+            @foreach($comments as $comment)
                 <div class="section">
-                    <img src="/images/pic1.jpg" alt=""/>
-                    <h5><?=$comment->user->full_name?></h5>
+                    @if(!empty($comment->user->img))
+                        <img src="/files/{{$comment->user->img}}" width="65" alt=""/>
+                    @else
+                        <img src="/images/pic1.jpg" alt=""/>
+                    @endif
+                    <h5>{{$comment->user->full_name}}</h5>
                     <p>{{$comment->comment}}</p>
                     <span class="time"><?$dt = new DateTime($comment->created_at); echo $dt->format('d.m.Y H:i')?></span>
                 </div>
-            <?}?>
-        <?endif?>
+            @endforeach
+        @endif
 
     </div>
     <div class="comment-error"></div>

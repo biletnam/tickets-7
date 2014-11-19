@@ -5,6 +5,6 @@ class TicketComment extends \Eloquent {
 
     public function user()
     {
-        return $this->belongsTo('User')->select('full_name','email')->remember(10);
+        return $this->belongsTo('User')->select('full_name','email','img')->remember(10);
     }
 }
