@@ -12,7 +12,7 @@
             <img src="<?=!empty(Auth::user()->img)? '/files/'.Auth::user()->img:'images/admin.jpg'?>" width="250px;" alt=""/>
         </div>
         <div class="admin-name">
-            <h4>Имя администратора</h4>
+            <h4>{{Auth::user()->full_name}}</h4>
             <a class="add-client" href="{{URL::route('user.create')}}">Добавить клиента</a>
             <ul class="stroger">
                 <li><a href="<?=URL::route('ticket.index',array('status_id'=>1))?>">Новые ({{$countNew}})</a></li>
