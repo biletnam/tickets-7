@@ -6,7 +6,11 @@ class Ticket extends \Eloquent {
     public function scopeTicketList($query){
         if (Auth::user()->role!=="admin")
         {
-            $query->where('user_id','=',Auth::user()->id);
+            if(Auth::user()->role == 'worker') {
+                $query->where('worker','LIKE','%['.Auth::user()->id.']%');
+            } else {
+                $query->where('user_id','=',Auth::user()->id);
+            }
         }elseif(Auth::user()->role=="admin" && Input::get('user_id',false)){
             $query->where('user_id','=',Input::get('user_id'));
         }
@@ -35,7 +39,8 @@ class Ticket extends \Eloquent {
             $query->where('created_at','<=',$dt_to->format("Y-m-d 23:59:59"));
         }
 
-        $query->orderBy('created_at','desc');
+        //$query->orderBy('created_at','desc');
+         $query->orderBy('id','title');
     }
 
     public static  function statusCount($status_id){

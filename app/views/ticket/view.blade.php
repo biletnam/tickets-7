@@ -44,6 +44,7 @@
                 @if(Auth::user()->role=='admin')
                 <p><label class="bold1">Cтатус подтверждения заказчиком</label>: <span><?=$ticket->apply==0 ? "Не подтвержден":"Подтвержден"?></span></p>
                 @else
+                @if(Auth::user()->role=='user')
                 @if($ticket->apply==0)
                 <p class="gluper stricker">
                     {{Form::model($ticket,array('route' => array('ticket.update',"ticket"=>$ticket->id),"role"=>"form","method"=>"PUT"))}}
@@ -51,6 +52,7 @@
                     {{ Form::submit('Подтвердить',['class'=>'add-work'])}}
                     {{Form::close();}}
                 </p>
+                @endif
                 @endif
                 @endif
             </div>
@@ -63,6 +65,8 @@
     <span class="comments-me">Комментарии</span>
     <div class="clearfix"></div>
     <div class="white-bock">
+        <? //echo "<pre>";print_r(Auth::user()->img);?>
+        <input class="img_com_h" type="hidden" value="/files/<?=Auth::user()->img;?>"/>
         <?php
         $comments  =$ticket->commets()->get();
         ?>
@@ -70,6 +74,9 @@
         @if(!empty($comments))
             @foreach($comments as $comment)
                 <div class="section">
+                    <?
+                    //print_r($comment->user->img);exit;
+                    ?>
                     @if(!empty($comment->user->img))
                         <img src="/files/{{$comment->user->img}}" width="65" alt=""/>
                     @else

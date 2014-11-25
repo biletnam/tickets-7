@@ -54,8 +54,8 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
-			'database'  => 'forge',
+			'host'      => '127.0.0.1',
+			'database'  => 'ticket',
 			'username'  => 'forge',
 			'password'  => '',
 			'charset'   => 'utf8',

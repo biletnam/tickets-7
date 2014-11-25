@@ -5,7 +5,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
+class Worker extends Eloquent implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait;
     use SoftDeletingTrait;
@@ -29,7 +29,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     protected $guarded = array('password_confirmation');
 
     public function scopeUserList($query){
-        $query->where('role','=','user');
+        $query->where('role','=','worker');
         if(Input::get('id')){
             $query->where('id','=',Input::get('id'));
         }

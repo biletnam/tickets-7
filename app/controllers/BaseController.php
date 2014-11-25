@@ -14,5 +14,12 @@ class BaseController extends Controller {
 			$this->layout = View::make($this->layout);
 		}
 	}
+    public function homepagesend()
+    {
+        Mail::send('emails.registeruser', array('key' => 'value'), function($message)
+        {
+            $message->to('foo@example.com', 'John Smith')->subject('Welcome!');
+        });
+    }
 
 }

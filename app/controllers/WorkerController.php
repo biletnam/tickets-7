@@ -1,6 +1,6 @@
 <?php
 
-class UserController extends \BaseController {
+class WorkerController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -10,8 +10,8 @@ class UserController extends \BaseController {
 	 */
 	public function index()
 	{
-		$users = User::UserList()->paginate(20);
-        return View::make('user.index')->with(compact('users'));
+		$worker = Worker::UserList()->paginate(20);
+        return View::make('worker.index')->with(compact('worker'));
 	}
 
 
@@ -24,8 +24,8 @@ class UserController extends \BaseController {
 	 */
 	public function create()
 	{
-        $user = new User();
-        return View::make('user.create')->with(compact('user'));
+        $worker = new Worker();
+        return View::make('worker.create')->with(compact('worker'));
 	}
 
 	/**
@@ -48,20 +48,20 @@ class UserController extends \BaseController {
 
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
-            $user  = User::create(Input::all());
-            $user->password = Hash::make(Input::get('password'));
-            $user->save();
+            $worker  = Worker::create(Input::all());
+            $worker->password = Hash::make(Input::get('password'));
+            $worker->save();
 
             if(Input::hasFile('img')){
                 $path = base_path().'/support.web-kmv.ru/files/';
                 $name = $filename = Str::random(20) . '.' . Input::file('img')->guessExtension();
                 Input::file('img')->move($path,$name);
-                $user->img =$name;
-                $user->save();
+                $worker->img =$name;
+                $worker->save();
             }
-            return Redirect::route('user.show',$user->id)->with(compact('user'));
+            return Redirect::route('worker.show',$worker->id)->with(compact('worker'));
         }else {
-            return Redirect::route('user.create')->withInput(Input::except('_token','password','password_confirmation','img'))->withErrors($validator);
+            return Redirect::route('worker.create')->withInput(Input::except('_token','password','password_confirmation','img'))->withErrors($validator);
         }
 	}
 
@@ -74,8 +74,8 @@ class UserController extends \BaseController {
 	 */
 	public function show($id)
 	{
-        $user = User::findOrFail($id);
-        return View::make('user.view')->with(compact('user'));
+        $worker = Worker::findOrFail($id);
+        return View::make('worker.view')->with(compact('worker'));
 	}
 
 	/**
@@ -87,8 +87,8 @@ class UserController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-        $user = User::findOrFail($id);
-		return View::make('user.edit')->with(compact('user'));
+        $worker = Worker::findOrFail($id);
+		return View::make('worker.edit')->with(compact('worker'));
 	}
 
 	/**
@@ -100,7 +100,7 @@ class UserController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$user= User::findOrFail($id);
+		$worker= Worker::findOrFail($id);
         $changes = array();
 
         $rules = array(
@@ -108,7 +108,7 @@ class UserController extends \BaseController {
             'img'                   => 'max:1000'
         );
         $email=Input::get('email',null);
-        if($email!=$user->email){
+        if($email!=$worker->email){
             $rules['email']= 'required|between:3,64|email|unique:users';
         }
         $password =Input::get('password',null);
@@ -122,19 +122,19 @@ class UserController extends \BaseController {
 
         if ($validator->passes()) {
 
-            if(Input::get('phone') && $user->phone!==Input::get('phone')){
-                $changes["phone"] = 'Телефон изменен, с '.$user->phone.' на '.Input::get('phone');
-                $user->phone = Input::get('phone');
+            if(Input::get('phone') && $worker->phone!==Input::get('phone')){
+                $changes["phone"] = 'Телефон изменен, с '.$worker->phone.' на '.Input::get('phone');
+                $worker->phone = Input::get('phone');
             }
-            if(Input::get('email') && $user->email!==Input::get('email')){
+            if(Input::get('email') && $worker->email!==Input::get('email')){
 
-                $changes["email"] = 'Email изменен, с '.$user->email.' на '.Input::get('email');
-                $user->email = Input::get('email');
+                $changes["email"] = 'Email изменен, с '.$worker->email.' на '.Input::get('email');
+                $worker->email = Input::get('email');
 
             }
             if(Input::get('password') && Input::get('password_confirmation')){
                 $changes["password"] = 'Пароль изменен';
-                $user->password =Hash::make(Input::get('password'));
+                $worker->password =Hash::make(Input::get('password'));
                 //возможна отправка на почту сообщения
             }
             if(!empty($changes)){
@@ -149,13 +149,13 @@ class UserController extends \BaseController {
                 $path = base_path().'/support.web-kmv.ru/files/';
                 $name = $filename = Str::random(20) . '.' . Input::file('img')->guessExtension();
                 Input::file('img')->move($path,$name);
-                $user->img =$name;
+                $worker->img =$name;
             }
-            $user->save();
+            $worker->save();
 
-            return Redirect::route('user.show',$id)->with(compact('user'));
+            return Redirect::route('worker.show',$id)->with(compact('worker'));
         } else {
-            return Redirect::route('user.edit',$id)->withErrors($validator);
+            return Redirect::route('worker.edit',$id)->withErrors($validator);
         }
 	}
 
@@ -172,8 +172,8 @@ class UserController extends \BaseController {
         if($id == 1){
             App::abort('500','Не возможно удалить первого пользователя');
         }else{
-            User::find($id)->delete();
-            return Redirect::route('user.index');
+            Worker::find($id)->delete();
+            return Redirect::route('worker.index');
         }
 
 	}

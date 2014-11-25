@@ -5,6 +5,8 @@
 @if(Session::has('ticket.create'))
 {{Session::get('ticket.create')}}
 @endif
+
+<?//=Auth::user()->role?>
 <div class="gray-line"></div>
 <div class="admin-block">
     <div class="bn-wp">

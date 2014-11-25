@@ -18,7 +18,8 @@ class TicketController extends \BaseController {
         if(Input::get('status')){
             $tickets->appends(array('status'=>Input::get('status')));
         }
-
+       // echo "<pre>";
+        //print_r($tickets);
         if (Auth::user()->role!=="admin")
         {
             return View::make('ticket/index')->with(compact('tickets','status'));
@@ -40,6 +41,7 @@ class TicketController extends \BaseController {
 	 */
 	public function create()
 	{
+
         $ticket = new Ticket;
         $priorities  = Priority::arrayPriority();
 
@@ -91,7 +93,9 @@ class TicketController extends \BaseController {
 	public function show($id)
 	{
         $ticket= Ticket::findOrFail($id);
-        if($ticket->user_id==Auth::user()->id || Auth::user()->role=="admin"){
+        //echo "<pre>";
+        //print_r($ticket['original']['worker']);
+        if($ticket->user_id==Auth::user()->id || Auth::user()->role=="admin" || preg_match('['.Auth::user()->id.']',$ticket['original']['worker'])){
             return View::make('ticket.view')->with(compact('ticket'));
         }else{
             App::abort(403, 'У вас нет прав, для просмотра этой страницы.');
@@ -115,11 +119,20 @@ class TicketController extends \BaseController {
         foreach($status_obj as $status){
             $statuses[$status->id]=$status->title;
         }
+        $users_me = array();
+        $user_list = User::orderBy('id', 'desc')->get();
+        foreach($user_list as $key => $user_l){
+            if($user_l->role == 'worker') {
+                $users_me[$user_l->id]=$user_l->full_name;
+            }
+        }
+        $work = array();
+
         if($ticket->user_id==Auth::user()->id || Auth::user()->role=="admin"){
             if (Auth::user()->role!=="admin"){
-                return View::make('ticket.edit')->with(compact('ticket','statuses'));
+                return View::make('ticket.edit')->with(compact('ticket','statuses','users_me'));
             }else{
-                return View::make('ticket.edit')->with(compact('ticket','statuses'));
+                return View::make('ticket.edit')->with(compact('ticket','statuses','users_me'));
             }
         }else{
             App::abort(403, 'У вас нет прав, для просмотра этой страницы.');
@@ -135,7 +148,6 @@ class TicketController extends \BaseController {
 	 */
 	public function update($id)
 	{
-
         $ticket= Ticket::findOrFail($id);
         if($ticket->user_id==Auth::user()->id || Auth::user()->role=="admin"){
             $change  = array();
@@ -148,8 +160,16 @@ class TicketController extends \BaseController {
                 $ticket->price = Input::get("price");
                 $change = array('status_id'=>'Стоимость выполнения задачи изменена');
             }
-
+            if(Input::get("worker") && $ticket->worker !=Input::get("worker") && Auth::user()->role=='admin'){
+                $comma_separated = '['.implode("],[", Input::get("worker")).']';
+                $ticket->worker = $comma_separated;
+                $change = array('status_id'=>'Стоимость выполнения задачи изменена');
+            }
+            //echo "<pre>";
+            //print_r(Input::get("worker"));
+            //exit;
             if(Input::get("apply") && $ticket->price !=Input::get("apply")){
+                echo Input::get("apply");exit;
                 $ticket->apply = Input::get("apply");
                 $change = array('status_id'=>'Подтверждено.');
             }

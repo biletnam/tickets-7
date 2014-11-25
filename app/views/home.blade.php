@@ -1,6 +1,12 @@
 @extends('layouts.default')
 
 @section('content')
+<style>
+    #simplemodal-container {
+        height: 327px!important;
+        width: 422px!important;
+    }
+</style>
 <p class="slogon">Студия осуществляет техническую поддержку сайтов <br/>на любых системах управления, в том числе и самописных.</p>
 <p class="orange-text">Особенно любим:</p>
 <p class="cms"><span>1C-Битрикс</span>   <!-- <span>Joomla</span>    <span>Wordpress</span>--></p>
@@ -20,7 +26,20 @@
     {{ Form::close() }}
     <span><a id="modal" href="#">Забыли пароль?</a></span>
 </div>
-<div class="btn-block">
+<div class="btn-block beclient-me">
     <a class="red-btn" href="#">Стать клиентом</a>
+</div>
+<div class="content register-me">
+    <div class=" inner-block">
+        <div class="form-block form-block-me">
+            <p class="cms cms-me"><span>1C-Битрикс</span></p>
+            <form role="form" accept-charset="UTF-8" action="http://tickets/login" method="POST"><input type="hidden" value="Dnb0r2EnM1KhUc6b7PR8oLtSkfkpAsufIg9XJT9N" name="_token">
+                <input type="text" name="email-me" placeholder="Имя">
+                <input type="text" name="phone-me" placeholder="Телефон">
+                <textarea name="message-me" id="" cols="30" rows="10" placeholder="Введите сообщение"></textarea>
+                <input type="submit" value="Войти">
+            </form>
+        </div>
+    </div>
 </div>
 @stop

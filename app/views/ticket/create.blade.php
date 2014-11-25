@@ -19,7 +19,7 @@
             </li>
             <li>
                 <span>Описание:</span><br/>
-                {{ Form::textarea('description')}}
+                {{ Form::textarea('description', null, ['class' => 'jqte-test'])}}
             </li>
             <li>
                 <span class="add-file">Прикрепить файл <span>(не больше 8 Мб.)</span>:</span><br/>

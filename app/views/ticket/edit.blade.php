@@ -2,6 +2,14 @@
 @section('content')
 <h3>Задача №{{$ticket->id}}</h3>
 <div class="gray-line super-grey"></div>
+<? //echo "<pre>";print_r($ticket->worker);
+//echo "<pre>";
+//print_r($ticket);
+$ticket->worker = str_replace('[','',$ticket->worker);
+$ticket->worker = str_replace(']','',$ticket->worker);
+
+
+?>
 <div class="form-add-block">
     <?if(Session::has('status_id')){
         echo '<div class="alert success">'.Session::get('status_id').'</div>';
@@ -10,7 +18,10 @@
         echo '<div class="alert warning">'.Session::get('error').'</div>';
     }?>
     {{ Form::model($ticket,array('route' => array('ticket.update',"ticket"=>$ticket->id),"role"=>"form","files"=>"true","method"=>"PUT"))}}
-    <div class="left-form openss">
+    <div class="left-form openss" style="width: 100%">
+        <?
+        //echo "<pre>";print_r($ticket);
+        ?>
         <ul>
 
             @if(!empty($ticket->title))
@@ -35,6 +46,10 @@
                 <label class="error">{{ $errors->first('status_id') }}</label>
             </li>
             @if(Auth::user()->role=="admin")
+            <li><label class="bold1" style="vertical-align: top;display: block;">Исполнитель:</label>
+                {{ Form::select('worker[]',$users_me, $ww = explode(",", $ticket->worker), array('multiple' => true)) }}
+                <label class="error">{{ $errors->first('users_me') }}</label>
+            </li>
             <li><label class="bold1">Цена за работу:</label>
                 {{ Form::text('price') }}
                 <label class="error">{{ $errors->first('price') }}</label>

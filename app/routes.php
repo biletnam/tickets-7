@@ -24,7 +24,7 @@ Route::get('/',['as'=>'home',
         }]);
 
 Route::get('/login',function(){
-        return View::make('home');
+    return View::make('home');
     });
 
 
@@ -109,3 +109,7 @@ Route::group(array('before' => 'auth'),function(){
 Route::group(array('before' => array('auth','admin')),function(){
     Route::resource('user','UserController');
 });
+Route::group(array('before' => array('auth','admin')),function(){
+    Route::resource('worker','WorkerController');
+});
+Route::get('base/homepagesend/','BaseController@homepagesend');
