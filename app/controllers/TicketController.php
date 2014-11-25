@@ -168,11 +168,13 @@ class TicketController extends \BaseController {
             //echo "<pre>";
             //print_r(Input::get("worker"));
             //exit;
+
+            // идет проверка установлен ли Cтатус подтверждения заказчиком
             if(Input::get("apply") && $ticket->price !=Input::get("apply")){
-                echo Input::get("apply");exit;
-                $ticket->apply = Input::get("apply");
-                $change = array('status_id'=>'Подтверждено.');
+
             }
+            $ticket->apply = Input::get("apply");
+            $change = array('status_id'=>'Подтверждено.');
             if(!empty($change) && $ticket->save()){
                 foreach($change as $k=>$str){
                     Session::flash($k,$str);

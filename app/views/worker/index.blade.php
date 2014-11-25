@@ -45,8 +45,8 @@
             <td><?=$user->phone?></td>
             <td><?=$user->email?></td>
             <td class="action-btn"><!--<span class="right-sp"></span>-->
-                <a class="view" href="{{URL::route('worker.show',array('id'=>$user->id))}}"><img src="/images/see.png" alt=""/></a>
-                <a class="edit" href="{{URL::route('worker.edit',array('id'=>$user->id))}}"><img src="/images/edit.png" alt=""/></a>
+                <a class="view" href="{{URL::route('worker.show',array('id'=>$user->id))}}"><span class="see-me"></span></a>
+                <a class="edit" href="{{URL::route('worker.edit',array('id'=>$user->id))}}"><span class="edit-me"></span></a>
                 {{Form::model('$worker',array('route'=>array('worker.destroy',$user->id),'method'=>'DELETE'))}} {{Form::submit('Delete')}} {{Form::close()}}
             </td>
         </tr>

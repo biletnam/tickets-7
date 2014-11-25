@@ -911,16 +911,26 @@ span.add-file span {
 .action-btn form {
     display: inline;
     padding-left: 2px;
+    vertical-align: top;
 }
 .action-btn form input[type="submit"] {
-    width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
     background: url("/images/delete.png") no-repeat;
     text-indent: -9999px;
     border: none;
 }
 .action-btn a {
+    display: inline-block;
+    *display: block;
+     zoom: 1;
     margin-left: 2px;
+}
+.action-btn a.edit {
+    margin-left: 8px;
+}
+.action-btn form input[type="submit"]:hover {
+    background-position: bottom!important;
 }
 .bn-wp {
     width: 890px;
@@ -1084,4 +1094,32 @@ body .form-block-me {
 }
 .register-me {
     width: 300px;
+}
+.see-me {
+    display: inline-block;
+    *display: block;
+    zoom: 1;
+    background: url("../images/see.png") no-repeat;
+    width: 24px;
+    height: 24px;
+}
+.see-me:hover {
+    background-position: left bottom!important;
+}
+.edit-me {
+    display: inline-block;
+    *display: block;
+    zoom: 1;
+    background: url("../images/edit.png") no-repeat;
+    width: 15px;
+    height: 24px;
+}
+.edit-me:hover {
+    background-position: left bottom!important;
+}
+.price-me-title label {
+    display: block;
+}
+.price-me-title input {
+    width: 120px!important;
 }

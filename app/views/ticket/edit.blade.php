@@ -50,7 +50,7 @@ $ticket->worker = str_replace(']','',$ticket->worker);
                 {{ Form::select('worker[]',$users_me, $ww = explode(",", $ticket->worker), array('multiple' => true)) }}
                 <label class="error">{{ $errors->first('users_me') }}</label>
             </li>
-            <li><label class="bold1">Цена за работу:</label>
+            <li class="price-me-title"><label class="bold1">Цена за работу:</label>
                 {{ Form::text('price') }}
                 <label class="error">{{ $errors->first('price') }}</label>
             </li>
