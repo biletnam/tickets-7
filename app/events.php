@@ -19,7 +19,7 @@ Event::listen('eloquent.updated: Ticket',function(Ticket $ticket){
     }
     if(!empty($old["status_id"]) &&  $old["status_id"]!=$ticket->status_id){
         $stat = Status::find($old["status_id"]);
-        $status ="Статус задачи изменен с ".$stat->title."на".$ticket->status->title;
+        $status ="Статус задачи изменен с ".$stat->title." на".$ticket->status->title;
     }
     $email  = $ticket->user->email;
     $admin = User::findOrFail(1);

@@ -2,7 +2,7 @@
 @section('content')
 <h3>добавить Задачу</h3>
 <div class="gray-line"></div>
-<div class="form-add-block">
+<div class="form-add-block super-style">
     {{ Form::model($ticket,array('route' => array('ticket.store'),"role"=>"form","files"=>"true"))}}
     <div class="left-form">
         <ul>
@@ -13,7 +13,7 @@
             </li>
             <li>
                 <span>URL адрес страницы, для которой ставится задача:</span><br/>
-                <span>(вводите полный путь с http://)</span><br>
+                <span class="line-height-10">(вводите полный путь с http://)</span><br>
                 {{Form::text('url','',array('placeholder'=>'http://example.com/test.php')) }}
                 <label class="error">{{ $errors->first('url') }}</label>
             </li>
@@ -22,7 +22,7 @@
                 {{ Form::textarea('description', null, ['class' => 'jqte-test'])}}
             </li>
             <li>
-                <span class="add-file">Прикрепить файл <span>(не больше 8 Мб.)</span>:</span><br/>
+                <span class="add-file prikrepit_fail">Прикрепить файл <span>(не больше 8 Мб.)</span>:</span><br/>
                 {{Form::file('file_path')}}
                 <label class="error">{{ $errors->first('file_path') }}</label>
             </li>
@@ -39,7 +39,7 @@
             @endforeach
         </ul>
         {{Form::hidden('user_id',Auth::user()->id)}}
-        <div class="my_btn sui">
+        <div class="my_btn sui sudo">
         {{ Form::submit('Добавить задачу',['class'=>'add-work'])}}
         </div>
     </div>

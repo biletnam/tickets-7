@@ -10,7 +10,7 @@
     <!-- JS files are loaded at the bottom of the page -->
 </head>
 <body>
-    <div class="wrapper">
+    <div class="wrapper bg-style2">
         <header class="header">
             <div class="top-header">
                 <a class="logo" href="/"></a>
@@ -26,7 +26,7 @@
                     </nav>
                     <a class="exit" href="/logout">Выйти</a>
                 @endif
-                <span class="phone">8(8793) <span>40-72-90</span></span>
+                <span class="phone" @if (!Auth::check()) style="top: 36px" @endif>8(8793) <span>40-72-90</span></span>
             </div>
             <div class="orang-block">
                 <div class="inner-orang-block">

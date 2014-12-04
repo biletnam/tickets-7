@@ -13,11 +13,11 @@
 <table>
     <thead>
     <tr>
-        <td class="number"><!--<span class="left-sp"></span>-->Номер</td>
+        <td class="number"><span class="left-sp"></span>Номер</td>
         <td class="task">Задача</td>
         <td class="clients">Статус</td>
         <td class="status">Стоимость</td>
-        <td><!--<span class="right-sp"></span>--></td>
+        <td><span class="right-sp"></span></td>
     </tr>
     </thead>
     <tbody class="tbody">
@@ -37,11 +37,11 @@
     </tbody>
     <tfoot class="me-tfoot">
     <tr>
-        <td><!--<span class="left-sp"></span>--></td>
+        <td><span class="left-sp"></span></td>
         <td></td>
         <td></td>
         <td></td>
-        <td><!--<span class="right-sp"></span>--></td>
+        <td><span class="right-sp"></span></td>
     </tr>
     </tfoot>
 </table>

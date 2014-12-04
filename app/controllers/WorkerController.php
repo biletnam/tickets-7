@@ -36,7 +36,6 @@ class WorkerController extends \BaseController {
 	 */
 	public function store()
 	{
-
         $rules = array(
             'full_name'             => 'required',
             'role'                  => 'required',

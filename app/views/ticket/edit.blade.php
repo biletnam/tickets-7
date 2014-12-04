@@ -25,40 +25,39 @@ $ticket->worker = str_replace(']','',$ticket->worker);
         <ul>
 
             @if(!empty($ticket->title))
-            <li><label class="bold1">Название:</label> <span>{{$ticket->title}}</span></li>
+            <li><label class="bold1 open-air">Название:</label> <span>{{$ticket->title}}</span></li>
             @endif
 
             @if(!empty($ticket->url))
             <li><label class="label bold1">URL:</label> <span><a href="{{$ticket->url}}">{{$ticket->url}}</a></span></li>
             @endif
-
-            @if(!empty($ticket->description))
-            <li>
-                {{$ticket->description}}
-            </li>
-            @endif
             @if(!empty($ticket->file_path))
             <li><a target="_blank" href="{{URL::to('manager',array('ticket'=>$ticket->id))}}">Файл</a></li>
             @endif
-            <li><label class="bold1">Приоритет</label>: <span>{{$ticket->priority->title}}</span></li>
-            <li><label class="bold1">Статус:</label>
+            <li><label class="bold1 open-air">Приоритет</label>: <span>{{$ticket->priority->title}}</span></li>
+            <li><label class="bold1 open-air">Статус:</label>
                 {{ Form::select('status_id',$statuses) }}
                 <label class="error">{{ $errors->first('status_id') }}</label>
             </li>
             @if(Auth::user()->role=="admin")
-            <li><label class="bold1" style="vertical-align: top;display: block;">Исполнитель:</label>
+            <li><label class="bold1 open-air" style="vertical-align: top;display: block;">Исполнитель:</label>
                 {{ Form::select('worker[]',$users_me, $ww = explode(",", $ticket->worker), array('multiple' => true)) }}
                 <label class="error">{{ $errors->first('users_me') }}</label>
             </li>
-            <li class="price-me-title"><label class="bold1">Цена за работу:</label>
+            <li class="price-me-title"><label class="bold1 open-air">Цена за работу:</label>
                 {{ Form::text('price') }}
                 <label class="error">{{ $errors->first('price') }}</label>
             </li>
             @endif
-            <li><label>Cтатус подтверждения заказчиком:</label>
+            <li style="margin-top: 7px;"><label class="bold1     open-air">Cтатус подтверждения заказчиком:</label>
                 {{Form::checkbox('apply',1,$ticket->apply==1)}}
                 <label class="error">{{ $errors->first('apply') }}</label>
             </li>
+            @if(!empty($ticket->description))
+            <li class="super-ramka">
+                {{$ticket->description}}
+            </li>
+            @endif
             <li class="my_btn ska">{{ Form::submit('Сохранить',['class'=>'add-work'])}}</li>
         </ul>
     </div>

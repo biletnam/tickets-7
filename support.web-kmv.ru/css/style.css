@@ -57,6 +57,7 @@ body {
 	font: 12px/18px 'Noto Sans', sans-serif;
 	width: 100%;
 	height: 100%;
+    background: url("../images/bg1.png") no-repeat scroll left 90px;
 }
 .wrapper {
 	min-width: 940px;
@@ -64,6 +65,9 @@ body {
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
+}
+.bg-style2 {
+    background: url("../images/bg2.png") no-repeat scroll right 90px;
 }
 strong {
 	font-weight: bold;
@@ -106,6 +110,29 @@ a:hover {
 }
 .header .top-header nav ul li a {
     color: #595959;
+    text-decoration: none;
+    padding-bottom: 4px;
+}
+.header .top-header nav ul li a:hover {
+    border-bottom: 2px solid #bdbdbd;
+}
+.red-width {
+    padding-left: 0!important;
+    padding-right: 0!important;
+}
+.super-style input[type="text"] {
+    margin-bottom: 9px;
+}
+.super-ramka {
+    border: 1px solid #ccc;
+    margin-top: 16px;
+    padding: 10px 20px;
+}
+.starter-slica {
+    float: left;
+}
+.sertificate {
+    margin-top: 20px;
 }
 .header .top-header .exit {
     font: 13px Arial;
@@ -117,7 +144,10 @@ a:hover {
     border-radius: 3px;
     position: absolute;
     right: 10px;
-    top: 12px;
+    top: 16px;
+}
+.sudo {
+    margin-top: 204px!important;
 }
 .header .top-header .exit:hover {
     background: #fafafa;
@@ -144,9 +174,12 @@ a:hover {
 .orang-block .inner-orang-block .personal-account {
 	position: absolute;
 	top: 21px;
-	left: 60px;
+	left: 25px;
 	color: #fff;
 	font: 24px Arial;
+}
+.orang-block .inner-orang-block .search-form input[type="submit"]:hover {
+    background-position: left bottom;
 }
 .orang-block .inner-orang-block .search-number-keyword {
 	position: absolute;
@@ -441,7 +474,7 @@ a:hover {
     padding: 10px 20px 10px 20px;
     font-size: 14px;
     color: #000;
-    border-bottom: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd!important;
 }
 .content .admin table tbody tr {
     cursor: pointer;
@@ -908,8 +941,65 @@ span.add-file span {
 .action-btn {
     text-align: center;
 }
+.draser-me {
+    width: 400px;
+}
+.ochistit-me {
+    float: left;
+    width: 238px;
+}
+.slisters {
+    margin-bottom: 20px;
+}
+.add-client-med {
+    float: right!important;
+    line-height: 22px!important;
+}
+.line-height-10 {
+    position: relative;
+    top: -7px;
+    font-size: 12px!important;
+    line-height: 15px!important;
+}
+.prikrepit_fail {
+    color: #f75931!important;
+}
+.open-air {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    font-size: 13px;
+}
+.scver {
+    padding-top: 15px;
+    font-size: 13px;
+}
+.jqte {
+    margin-top: 2px!important;
+    border: 1px solid #cccccc!important;
+}
+.jqte_focused {
+    box-shadow: none!important;
+}
+.dubstep form {
+    padding-top: 0!important;
+}
+.ochistit-me-2 {
+    display: inline-block;
+    *display: block;
+    zoom: 1;
+    padding-left: 11px;
+    padding-top: 23px;
+}
+.new-task {
+    color: #f75931!important;
+}
+.new-task:hover {
+    text-decoration: none!important;
+}
 .action-btn form {
-    display: inline;
+    display: inline-block;
+    *display: block;
+    zoom: 1;
     padding-left: 2px;
     vertical-align: top;
 }
@@ -935,6 +1025,14 @@ span.add-file span {
 .bn-wp {
     width: 890px;
     margin: 0 auto;
+}
+.content .admin table tbody tr:last-child td {
+    border: none!important;
+}
+.content .admin table tfoot tr td {
+    /*padding: 13px 0!important;*/
+    height: 38px!important;
+    padding: 0!important;
 }
 .draser input
 {
@@ -1095,6 +1193,24 @@ body .form-block-me {
 .register-me {
     width: 300px;
 }
+input.btn[type="submit"]:hover
+{
+    background-position: left bottom!important;
+}
+.uio .add-work:hover {
+    background: url("../images/enter.jpg") repeat-x!important;
+    background-position: left bottom!important;
+}
+.sui .add-work {
+    color: #fff;
+    background: url("../images/client.jpg") repeat-x;
+}
+
+.sui .add-work:hover {
+    color: #fff;
+    background: url("../images/client.jpg") repeat-x 0 -32px;
+}
+
 .see-me {
     display: inline-block;
     *display: block;

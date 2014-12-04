@@ -24,25 +24,20 @@
                 @endif
 
                 @if(!empty($ticket->url))
-                <p><label class="bold1">URL:</label> <span><a href="{{$ticket->url}}">{{$ticket->url}}</a></span></p>
+                <p><label class="bold1 open-air">URL:</label> <span><a href="{{$ticket->url}}">{{$ticket->url}}</a></span></p>
                 @endif
 
-                @if(!empty($ticket->description))
-                <p>
-                    {{$ticket->description}}
-                </p>
-                @endif
                 @if(!empty($ticket->file_path))
                 <p><a target="_blank" href="<?echo substr($ticket->file_path,strpos($ticket->file_path,'web-kmv.ru')+10)?>">Файл</a></p>
                 <?/*<li><a target="_blank" href="{{URL::to('manager',array('ticket'=>$ticket->id))}}">Файл</a></li>*/?>
                 @endif
 
-                <p><label class="bold1">Приоритет</label>: <span>{{$ticket->priority->title}}</span></p>
-                <p><label class="bold1">Статус</label>: <span>{{$ticket->status->title}}</span></p>
-                <p><label class="bold1">Дата создания</label>: <span><?$dt = new DateTime($ticket->created_at); echo  $dt->format('d.m.Y H:i')?></span></p>
-                <p><label class="bold1">Стоимость работы</label>: <span><?=number_format($ticket->price,0,'',' ')?></span></p>
+                <p><label class="bold1 open-air">Приоритет</label>: <span>{{$ticket->priority->title}}</span></p>
+                <p><label class="bold1 open-air">Статус</label>: <span>{{$ticket->status->title}}</span></p>
+                <p><label class="bold1 open-air">Дата создания</label>: <span><?$dt = new DateTime($ticket->created_at); echo  $dt->format('d.m.Y H:i')?></span></p>
+                <p><label class="bold1 open-air">Стоимость работы</label>: <span><?=number_format($ticket->price,0,'',' ')?></span></p>
                 @if(Auth::user()->role=='admin')
-                <p><label class="bold1">Cтатус подтверждения заказчиком</label>: <span><?=$ticket->apply==0 ? "Не подтвержден":"Подтвержден"?></span></p>
+                <p><label class="bold1 open-air">Cтатус подтверждения заказчиком</label>: <span><?=$ticket->apply==0 ? "Не подтвержден":"Подтвержден"?></span></p>
                 @else
                 @if(Auth::user()->role=='user')
                 @if($ticket->apply==0)
@@ -60,7 +55,12 @@
     </div>
     <div class="clear"></div>
 </div>
-
+@if(!empty($ticket->description))
+<p class="scver">
+    <strong class="open-air">Описание:</strong>
+    {{$ticket->description}}
+</p>
+@endif
 <div class="zadach-block-me {{Auth::user()->role}}">
     <span class="comments-me">Комментарии</span>
     <div class="clearfix"></div>
@@ -101,7 +101,7 @@
         <p>
             <input type="hidden" name="controller" value="<?=URL::to('comment')?>" >
             <input type="hidden" name="ticket_id" value="<?=$ticket->id?>" >
-            <input class="red-btn red-btn-me" type="submit" value="Комментировать">
+            <input class="red-btn red-btn-me red-width" type="submit" value="Комментировать">
         </p>
         {{Form::close()}}
     </div>
