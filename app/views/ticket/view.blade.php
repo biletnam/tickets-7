@@ -44,7 +44,7 @@
                 <p class="gluper stricker">
                     {{Form::model($ticket,array('route' => array('ticket.update',"ticket"=>$ticket->id),"role"=>"form","method"=>"PUT"))}}
                     {{Form::hidden('apply',1)}}
-                    {{ Form::submit('Подтвердить',['class'=>'add-work'])}}
+                    {{ Form::submit('Подтвердить',['class'=>'add-work  red-btn red-btn-me '])}}
                     {{Form::close();}}
                 </p>
                 @endif

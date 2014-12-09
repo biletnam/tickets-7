@@ -45,6 +45,7 @@ jQuery(function ($) {
                             $(".white-bock").append('<div class="section"><img alt="" src="'+$(".img_com_h").val()+'" width="65"><h5>Ваше сообщение</h5><p>'+data.comment+'</p><span class="time">'+data.created_at+'</span></div>');
                             $(".white-bock").animate({"scrollTop": $('.white-bock')[0].scrollHeight}, "slow");
                             $('.comment-error').html('Комментарий оставлен.');
+                            $(".txt-are").val("");
                         }
                     }catch(ex){
                         consol.log(ex);
@@ -68,7 +69,7 @@ jQuery(function ($) {
             var data = form.serialize(); // подготавливаем данные
             $.ajax({ // инициализируем ajax запрос
                 type: 'GET', // отправляем в POST формате, можно GET
-                url: '/base/homepagesend/', // путь до обработчика, у нас он лежит в той же папке
+                url: '/base/homepagesend', // путь до обработчика, у нас он лежит в той же папке
                 dataType: 'json', // ответ ждем в json формате
                 data: data, // данные для отправки
                 beforeSend: function(data) { // событие до отправки
