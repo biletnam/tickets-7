@@ -42,7 +42,7 @@
                 <label class="error">{{ $errors->first('img') }}</label>
             </li>
             <li class="add-worl-me">
-                {{ Form::submit('Добавить исполнителя',['class'=>'add-work'])}}
+                {{ Form::submit('Добавить исполнителя',['class'=>'add-work btnx red-btn red-btn-me red-width'])}}
             </li>
 
         </ul>

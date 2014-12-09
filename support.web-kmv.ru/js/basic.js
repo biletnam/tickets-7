@@ -67,7 +67,7 @@ jQuery(function ($) {
         if (!error) { // если ошибки нет
             var data = form.serialize(); // подготавливаем данные
             $.ajax({ // инициализируем ajax запрос
-                type: 'POST', // отправляем в POST формате, можно GET
+                type: 'GET', // отправляем в POST формате, можно GET
                 url: '/base/homepagesend/', // путь до обработчика, у нас он лежит в той же папке
                 dataType: 'json', // ответ ждем в json формате
                 data: data, // данные для отправки

@@ -14,9 +14,9 @@
             <img src="<?=!empty(Auth::user()->img)? '/files/'.Auth::user()->img:'images/admin.jpg'?>" width="250px;" alt=""/>
         </div>
         <div class="admin-name" style="width: 650px!important;">
-            <h4 style="line-height: 12px;">{{Auth::user()->full_name}}</h4>
             <div class="sertificate">
                 <div class="starter-slica">
+                    <h4 class="aditional-h4">{{Auth::user()->full_name}}</h4>
                     <ul class="stroger">
                         <li><a class="new-task" href="<?=URL::route('ticket.index',array('status_id'=>1))?>">Новые ({{$countNew}})</a></li>
                     </ul>

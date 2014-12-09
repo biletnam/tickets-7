@@ -35,7 +35,7 @@
                         <img src="/files/{{$worker->img}}" width="300">
                     <?endif;?>
                 </li>
-                <li class="stricker uio">{{Form::submit('Сохранить',['class'=>'add-work'])}}</li>
+                <li class="stricker uio">{{Form::submit('Сохранить',['class'=>'btnx red-btn red-btn-me red-width'])}}</li>
             </ul>
         </div>
         {{Form::close()}}

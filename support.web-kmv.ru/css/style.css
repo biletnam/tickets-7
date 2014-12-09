@@ -132,7 +132,11 @@ a:hover {
     float: left;
 }
 .sertificate {
-    margin-top: 20px;
+  /*  margin-top: 20px;*/
+}
+.aditional-h4 {
+    line-height: 12px;
+    margin-bottom: 20px;
 }
 .header .top-header .exit {
     font: 13px Arial;
@@ -292,9 +296,11 @@ a:hover {
 	height: 12px;
 	margin-bottom: 12px;
 }
+.btnx {
+    width: 205px!important;
+}
 .content .inner-content .form-block input[type="button"],input[type="submit"] {
 	background: url(../images/enter.jpg) repeat-x;
-	border: none;
 	border-radius: 4px;
 	font-size: 15px;
 	color: #000;
@@ -1202,6 +1208,7 @@ input.btn[type="submit"]:hover
     background-position: left bottom!important;
 }
 .sui .add-work {
+    border-color: #d55130 #d5502f;
     color: #fff;
     background: url("../images/client.jpg") repeat-x;
 }

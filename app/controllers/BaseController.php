@@ -16,9 +16,11 @@ class BaseController extends Controller {
 	}
     public function homepagesend()
     {
-        Mail::send('emails.registeruser', array('key' => 'value'), function($message)
+
+
+        Mail::send('emails.registeruser', array('email_me' => Input::get('email_me'), 'phone-me' => Input::get('phone-m'), 'message-me' => Input::get('message-me')), function($message)
         {
-            $message->to('foo@example.com', 'John Smith')->subject('Welcome!');
+            $message->to('26programist@gmail.com', '')->subject('Регистрация в личном кабинете support.web-kmv.ru');
         });
     }
 

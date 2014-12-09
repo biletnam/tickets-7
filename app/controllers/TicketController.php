@@ -163,7 +163,12 @@ class TicketController extends \BaseController {
             if(Input::get("worker") && $ticket->worker !=Input::get("worker") && Auth::user()->role=='admin'){
                 $comma_separated = '['.implode("],[", Input::get("worker")).']';
                 $ticket->worker = $comma_separated;
-                $change = array('status_id'=>'Стоимость выполнения задачи изменена');
+            }
+            if(Input::get("time_real") && $ticket->time_real !=Input::get("time_real") && Auth::user()->role=='admin'){
+                $ticket->time_real = Input::get("time_real");
+            }
+            if(Input::get("time_expected") && $ticket->time_expected !=Input::get("time_expected") && Auth::user()->role=='admin'){
+                $ticket->time_expected = Input::get("time_expected");
             }
             //echo "<pre>";
             //print_r(Input::get("worker"));

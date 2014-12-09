@@ -48,6 +48,14 @@ $ticket->worker = str_replace(']','',$ticket->worker);
                 {{ Form::text('price') }}
                 <label class="error">{{ $errors->first('price') }}</label>
             </li>
+            <li class="price-me-title"><label class="bold1 open-air">Предполагаемое время:</label>
+                {{ Form::text('time_expected') }}
+                <label class="error">{{ $errors->first('time_expected') }}</label>
+            </li>
+            <li class="price-me-title"><label class="bold1 open-air">Затраченное время:</label>
+                {{ Form::text('time_real') }}
+                <label class="error">{{ $errors->first('time_real') }}</label>
+            </li>
             @endif
             <li style="margin-top: 7px;"><label class="bold1     open-air">Cтатус подтверждения заказчиком:</label>
                 {{Form::checkbox('apply',1,$ticket->apply==1)}}
@@ -58,7 +66,7 @@ $ticket->worker = str_replace(']','',$ticket->worker);
                 {{$ticket->description}}
             </li>
             @endif
-            <li class="my_btn ska">{{ Form::submit('Сохранить',['class'=>'add-work'])}}</li>
+            <li class="my_btn ska">{{ Form::submit('Сохранить',['class'=>'add-work btnx red-btn red-btn-me red-width'])}}</li>
         </ul>
     </div>
     {{ Form::close() }}
