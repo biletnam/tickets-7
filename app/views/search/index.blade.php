@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-<h3>Поиск по результату @if($q) ,{{$q}} @endif</h3>
+<h3>Поиск по запросу @if($q) ,{{$q}} @endif</h3>
 <div class="gray-line"></div>
 <div class="search-list">
 @if(empty($data))

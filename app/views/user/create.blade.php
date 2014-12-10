@@ -1,18 +1,18 @@
 @extends('layouts.default')
 @section('content')
-<h3>добавить пользователя</h3>
+<h3>добавить клиента</h3>
 <div class="gray-line"></div>
 <div class="form-add-block">
     {{ Form::model($user,array('route' => array('user.store'),"role"=>"form",'files'=>true))}}
     <div class="left-form">
         <ul>
             <li>
-                <span>Контактное Лицо:</span><br/>
+                <span>Контактное лицо:</span><br/>
                 {{Form::text('full_name')}}
                 <label class="error">{{ $errors->first('full_name') }}</label>
             </li>
             <li>
-                <span>email(Логин):</span><br/>
+                <span>email (Логин):</span><br/>
                 {{Form::text('email')}}
                 <label class="error">{{ $errors->first('email') }}</label>
             </li>

@@ -1113,8 +1113,11 @@ textarea {
     margin-top: 5px;
 }
 .comment-error {
-    color: red;
+    color: #f75931;
     margin-top: 14px;
+}
+.error {
+    color: #f75931;
 }
 .red-btn-me {
     line-height: 18px!important;

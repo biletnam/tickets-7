@@ -82,6 +82,6 @@
     </tfoot>
 </table>
 {{$tickets->links()}}
-<p>На странице: {{$tickets->count()}}, Всего: {{$tickets->getTotal()}}</p>
+<p>На странице: {{$tickets->count()}} Всего: {{$tickets->getTotal()}}</p>
 @endif
 @stop

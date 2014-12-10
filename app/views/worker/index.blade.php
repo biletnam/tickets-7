@@ -64,7 +64,7 @@
 </table>
 {{$worker->links()}}
 <br/>
-<p>На странице: {{$worker->count()}}, Всего: {{$worker->getTotal()}}</p>
+<p>На странице: {{$worker->count()}} Всего: {{$worker->getTotal()}}</p>
 @endif
 
 

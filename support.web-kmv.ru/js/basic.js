@@ -86,6 +86,7 @@ jQuery(function ($) {
                 },
                 error: function (xhr, ajaxOptions, thrownError) { // в случае неудачного завершения запроса к серверу
                     alert("Сообщение отправлено");
+                    $(".modalCloseImg").click();
                    // alert(xhr.status); // покажем ответ сервера
                    // alert(thrownError); // и текст ошибки
                 },

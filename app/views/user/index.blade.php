@@ -67,7 +67,7 @@
     </tfoot>
 </table>
 {{$users->links()}}
-<p>На странице: {{$users->count()}}, Всего: {{$users->getTotal()}}</p>
+<p>На странице: {{$users->count()}} Всего: {{$users->getTotal()}}</p>
 @endif
 
 

@@ -24,7 +24,7 @@
     {{ Form::password('password',array('placeholder'=>'Пароль')) }}
     {{ Form::submit('Войти', array()) }}
     {{ Form::close() }}
-    <span><a id="modal" href="#">Забыли пароль?</a></span>
+    <!--<span><a id="modal" href="#">Забыли пароль?</a></span>-->
 </div>
 <div class="btn-block beclient-me">
     <a class="red-btn" href="#">Стать клиентом</a>
@@ -37,7 +37,7 @@
                 <input type="text" name="email-me" placeholder="Имя">
                 <input type="text" name="phone-me" placeholder="Телефон">
                 <textarea name="message-me" id="" cols="30" rows="10" placeholder="Введите сообщение"></textarea>
-                <input type="submit" value="Войти">
+                <input class="btn" type="submit" value="Зарегистрироваться">
             </form>
         </div>
     </div>
