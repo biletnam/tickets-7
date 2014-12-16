@@ -50,6 +50,7 @@
                 @endif
                 @endif
                 @endif
+                <p><label class="bold1 open-air"> Отправить на проверку</label></p>
             </div>
         </div>
     </div>

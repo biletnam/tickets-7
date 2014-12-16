@@ -32,7 +32,13 @@ $ticket->worker = str_replace(']','',$ticket->worker);
             <li><label class="label bold1">URL:</label> <span><a href="{{$ticket->url}}">{{$ticket->url}}</a></span></li>
             @endif
             @if(!empty($ticket->file_path))
-            <li><a target="_blank" href="{{URL::to('manager',array('ticket'=>$ticket->id))}}">Файл</a></li>
+            <li><a target="_blank" href="{{$ticket->file_path}}">Файл</a></li>
+            @endif
+            @if(!empty($ticket->file_path2))
+            <li><a target="_blank" href="{{$ticket->file_path2}}">Файл</a></li>
+            @endif
+            @if(!empty($ticket->file_path3))
+            <li><a target="_blank" href="{{$ticket->file_path3}}">Файл</a></li>
             @endif
             <li><label class="bold1 open-air">Приоритет</label>: <span>{{$ticket->priority->title}}</span></li>
             <li><label class="bold1 open-air">Статус:</label>
@@ -65,8 +71,10 @@ $ticket->worker = str_replace(']','',$ticket->worker);
             <li class="super-ramka">
                 {{$ticket->description}}
             </li>
+            <input type="hidden" value="0" name="save_new"/>
             @endif
-            <li class="my_btn ska">{{ Form::submit('Сохранить',['class'=>'add-work btnx red-btn red-btn-me red-width'])}}</li>
+            <li class="my_btn ska save_new">{{ Form::submit('Сохранить и закрыть',['class'=>'add-work btnx red-btn red-btn-me red-width'])}}</li>
+            <li class="my_btn ska">{{ Form::submit('Сохранить и продолжить',['class'=>'add-work btnx red-btn red-btn-me red-width'])}}</li>
         </ul>
     </div>
     {{ Form::close() }}

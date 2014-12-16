@@ -64,6 +64,9 @@ class TicketController extends \BaseController {
 
         if(!$validate->fails()){
             $ticket = Ticket::create(Input::all());
+            //echo "<pre>";
+            //print_r($ticket);
+            //exit;
             //$ticket->user_id = Auth::user()->id;
             if ($ticket->save()){
                 if(Input::hasFile('file_path')){
@@ -71,6 +74,20 @@ class TicketController extends \BaseController {
                     $name = $filename = Str::random(20) . '.' . Input::file('file_path')->guessExtension();
                     Input::file('file_path')->move($path,$name);
                     $ticket->file_path =$path.$name;
+                    $ticket->save();
+                }
+                if(Input::hasFile('file_path2')){
+                    $path2 = base_path().'/support.web-kmv.ru/files/';
+                    $name2 = $filename = Str::random(20) . '.' . Input::file('file_path2')->guessExtension();
+                    Input::file('file_path2')->move($path2,$name2);
+                    $ticket->file_path2 =$path2.$name2;
+                    $ticket->save();
+                }
+                if(Input::hasFile('file_path2')){
+                    $path3 = base_path().'/support.web-kmv.ru/files/';
+                    $name3 = $filename = Str::random(20) . '.' . Input::file('file_path3')->guessExtension();
+                    Input::file('file_path3')->move($path3,$name3);
+                    $ticket->file_path3 =$path3.$name3;
                     $ticket->save();
                 }
                 Session::flash('ticket.create','Задача создана, №'.$ticket->id);
@@ -122,7 +139,7 @@ class TicketController extends \BaseController {
         $users_me = array();
         $user_list = User::orderBy('id', 'desc')->get();
         foreach($user_list as $key => $user_l){
-            if($user_l->role == 'worker') {
+            if($user_l->role == 'worker' || $user_l->role == 'admin' ) {
                 $users_me[$user_l->id]=$user_l->full_name;
             }
         }
@@ -181,6 +198,9 @@ class TicketController extends \BaseController {
             $ticket->apply = Input::get("apply");
             $change = array('status_id'=>'Подтверждено.');
             if(!empty($change) && $ticket->save()){
+                if(Input::get("save_new")) {
+                    header("Location: /ticket/?mes=Сохранено.");exit;
+                }
                 foreach($change as $k=>$str){
                     Session::flash($k,$str);
                 }

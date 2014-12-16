@@ -1,6 +1,9 @@
 @extends('layouts.default')
 @section('content')
 <h3 class="bn-wp">Задачи</h3>
+<div class="pod_title_message">
+    <? echo Input::get("mes");?>
+</div>
 @if(Session::has('ticket.create'))
 <div class="create-ticket bn-wp">
 {{Session::get('ticket.create')}}

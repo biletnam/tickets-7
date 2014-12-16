@@ -54,6 +54,10 @@ jQuery(function ($) {
             }
         )
     })
+    $("input[name='save_new']").val(0);
+    $(".save_new").click(function() {
+        $("input[name='save_new']").val(1);
+    })
 
 
     $(".form-block-me form").submit(function(){ // перехватываем все при событии отправки

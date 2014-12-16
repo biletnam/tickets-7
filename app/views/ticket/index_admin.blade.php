@@ -2,9 +2,12 @@
 
 @section('content')
 <h3>Задачи</h3>
-@if(Session::has('ticket.create'))
-{{Session::get('ticket.create')}}
-@endif
+<div class="pod_title_message">
+    <? echo Input::get("mes");?>
+    @if(Session::has('ticket.create'))
+    {{Session::get('ticket.create')}}
+    @endif
+</div>
 
 <?//=Auth::user()->role?>
 <div class="gray-line"></div>

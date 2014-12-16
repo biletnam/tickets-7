@@ -3,7 +3,7 @@
 @section('content')
 <style>
     #simplemodal-container {
-        height: 327px!important;
+        height: 380px!important;
         width: 422px!important;
     }
 </style>
@@ -34,8 +34,9 @@
         <div class="form-block form-block-me">
             <p class="cms cms-me"><span>1C-Битрикс</span></p>
             <form role="form" accept-charset="UTF-8" action="http://tickets/login" method="POST"><input type="hidden" value="Dnb0r2EnM1KhUc6b7PR8oLtSkfkpAsufIg9XJT9N" name="_token">
-                <input type="text" name="email-me" placeholder="Имя">
+                <input type="text" name="name-me" placeholder="Имя">
                 <input type="text" name="phone-me" placeholder="Телефон">
+                <input type="text" name="email-me" placeholder="E-mail">
                 <textarea name="message-me" id="" cols="30" rows="10" placeholder="Введите сообщение"></textarea>
                 <input class="btn" type="submit" value="Зарегистрироваться">
             </form>

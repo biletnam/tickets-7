@@ -24,6 +24,8 @@
             <li>
                 <span class="add-file prikrepit_fail">Прикрепить файл <span>(не больше 8 Мб)</span>:</span><br/>
                 {{Form::file('file_path')}}
+                {{Form::file('file_path2')}}
+                {{Form::file('file_path3')}}
                 <label class="error">{{ $errors->first('file_path') }}</label>
             </li>
         </ul>

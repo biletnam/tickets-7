@@ -24,6 +24,7 @@
                             @endif
                         </ul>
                     </nav>
+                    <span class="topName">{{Auth::user()->full_name}}</span>
                     <a class="exit" href="/logout">Выйти</a>
                 @endif
                 <span class="phone" @if (!Auth::check()) style="top: 36px" @endif>8(8793) <span>40-72-90</span></span>
