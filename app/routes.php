@@ -14,6 +14,7 @@
 /**
  * Main page
  */
+Route::get('ticket/naproverku/','TicketController@naproverku');
 Route::get('/',['as'=>'home',
         function(){
             if(Auth::check()){

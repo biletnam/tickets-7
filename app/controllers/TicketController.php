@@ -9,7 +9,41 @@ class TicketController extends \BaseController {
 	 */
 	public function index()
 	{
-        $tickets = Ticket::TicketList()->paginate(20);
+        $users_me = array();
+        if(Input::file('sort_me')) {
+            $sort_me = Input::file('sort_me');
+        } else {
+            $sort_me = 'id';
+        }
+        $user_list = User::orderBy('id', 'desc')->get();
+        foreach($user_list as $key => $user_l){
+            if($user_l->role == 'worker' || $user_l->role == 'admin' ) {
+               $users_me[$user_l->id]=$user_l->full_name;
+            }
+        }
+        if(Input::get('time_show') == '1') {
+            $count_page = 200000;
+        } else {
+            $count_page = 20;
+        }
+        $tickets = Ticket::TicketList()->paginate($count_page);
+        foreach($tickets as $key => $value) {
+            $value->worker = $value->worker;
+            $value->worker = str_replace('[',"",$value->worker);
+            $value->worker= str_replace(']',"",$value->worker);
+            $value->worker = $value->worker;
+        }
+        /* Spisok polzovateley */
+        $users_me = array();
+        $user_list = User::orderBy('id', 'desc')->get();
+        foreach($user_list as $key => $user_l){
+            if($user_l->role == 'worker' || $user_l->role == 'admin' ) {
+                $tickets->users_me[$user_l->id]=$user_l->full_name;
+            }
+        }
+        /* End Spisok polzovateley */
+
+
         $statusCollection  = Status::orderBy("order")->get(array('id','title'));
         $status = array();
         foreach($statusCollection as $stat){
@@ -64,9 +98,7 @@ class TicketController extends \BaseController {
 
         if(!$validate->fails()){
             $ticket = Ticket::create(Input::all());
-            //echo "<pre>";
-            //print_r($ticket);
-            //exit;
+
             //$ticket->user_id = Auth::user()->id;
             if ($ticket->save()){
                 if(Input::hasFile('file_path')){
@@ -109,7 +141,16 @@ class TicketController extends \BaseController {
      */
 	public function show($id)
 	{
+        // меняем статус задачи
+        if(Input::get("status_id") != '') {
+            $ticket= Ticket::findOrFail($id);
+            $ticket->status_id = Input::get("status_id");
+            $ticket->save();
+        }
         $ticket= Ticket::findOrFail($id);
+        //echo Input::get("status_id");
+        //$ticket->status_id = '1';
+        //$ticket->save();
         //echo "<pre>";
         //print_r($ticket['original']['worker']);
         if($ticket->user_id==Auth::user()->id || Auth::user()->role=="admin" || preg_match('['.Auth::user()->id.']',$ticket['original']['worker'])){
@@ -119,6 +160,20 @@ class TicketController extends \BaseController {
         }
 
 	}
+
+    public function naproverku()
+    {
+
+        if(Input::get("status_id") != '') {
+            $ticket= Ticket::findOrFail(Input::get("id"));
+            $ticket->status_id = Input::get("status_id");
+            $ticket->save();
+            echo 1;
+        }
+        //return 1;
+
+
+    }
 
 
     /**
@@ -178,9 +233,17 @@ class TicketController extends \BaseController {
                 $change = array('status_id'=>'Стоимость выполнения задачи изменена');
             }
             if(Input::get("worker") && $ticket->worker !=Input::get("worker") && Auth::user()->role=='admin'){
-                $comma_separated = '['.implode("],[", Input::get("worker")).']';
+               $comma_separated = '['.implode("],[", Input::get("worker")).']';
+               //если будет несколько то вставить $ticket->worker = $comma_separated;
                 $ticket->worker = $comma_separated;
             }
+
+            if(Input::get("worker2") && $ticket->worker2 !=Input::get("worker2") && Auth::user()->role=='admin'){
+                $comma_separated = '['.implode("],[", Input::get("worker2")).']';
+                $ticket->worker2 = $comma_separated;
+            }
+
+
             if(Input::get("time_real") && $ticket->time_real !=Input::get("time_real") && Auth::user()->role=='admin'){
                 $ticket->time_real = Input::get("time_real");
             }

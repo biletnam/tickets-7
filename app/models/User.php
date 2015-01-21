@@ -29,7 +29,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     protected $guarded = array('password_confirmation');
 
     public function scopeUserList($query){
-        $query->where('role','=','user');
+        if(Input::get('role')=='0') {
+            $showRole = "user";
+        } else {
+           $showRole = Input::get('role',"user");
+        }
+        $query->where('role','=',$showRole);
         if(Input::get('id')){
             $query->where('id','=',Input::get('id'));
         }

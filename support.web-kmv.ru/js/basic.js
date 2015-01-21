@@ -48,7 +48,7 @@ jQuery(function ($) {
                             $(".txt-are").val("");
                         }
                     }catch(ex){
-                        consol.log(ex);
+                        //consol.log(ex);
                     }
                 }
             }
@@ -81,7 +81,7 @@ jQuery(function ($) {
                 },
                 success: function(data){ // событие после удачного обращения к серверу и получения ответа
                     alert("Сообщение отправлено");
-                    console.log(data);
+                    //console.log(data);
                     if (data['error']) { // если обработчик вернул ошибку
                         alert(data['error']); // покажем её текст
                     } else { // если все прошло ок
@@ -103,5 +103,12 @@ jQuery(function ($) {
         return false; // вырубаем стандартную отправку формы
     });
     $('.jqte-test').jqte();
+
+    $(".delFileme").click(function(e) {
+        //alert(1);
+        e.preventDefault();
+
+        $(this).parents(".addFile").find("input").val("");
+    });
 });
 

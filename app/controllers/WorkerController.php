@@ -36,13 +36,15 @@ class WorkerController extends \BaseController {
 	 */
 	public function store()
 	{
+
         $rules = array(
             'full_name'             => 'required',
             'role'                  => 'required',
             'phone'                 => 'required|numeric',
             'password'              => 'required|alpha_num|between:4,8|confirmed',
             'password_confirmation' => 'required|alpha_num|between:4,8',
-            'img'                   => 'max:1000'
+            'img'                   => 'max:1000',
+            'email' => 'required|email|unique:users'
         );
 
         $validator = Validator::make(Input::all(), $rules);

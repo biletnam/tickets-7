@@ -8,6 +8,8 @@
 $ticket->worker = str_replace('[','',$ticket->worker);
 $ticket->worker = str_replace(']','',$ticket->worker);
 
+$ticket->worker2 = str_replace('[','',$ticket->worker2);
+$ticket->worker2 = str_replace(']','',$ticket->worker2);
 
 ?>
 <div class="form-add-block">
@@ -32,13 +34,13 @@ $ticket->worker = str_replace(']','',$ticket->worker);
             <li><label class="label bold1">URL:</label> <span><a href="{{$ticket->url}}">{{$ticket->url}}</a></span></li>
             @endif
             @if(!empty($ticket->file_path))
-            <li><a target="_blank" href="{{$ticket->file_path}}">Файл</a></li>
+            <li><a target="_blank" href="<?echo substr($ticket->file_path,strpos($ticket->file_path,'web-kmv.ru')+10)?>">Файл</a></li>
             @endif
             @if(!empty($ticket->file_path2))
-            <li><a target="_blank" href="{{$ticket->file_path2}}">Файл</a></li>
+            <li><a target="_blank" href="<?echo substr($ticket->file_path2,strpos($ticket->file_path2,'web-kmv.ru')+10)?>">Файл</a></li>
             @endif
             @if(!empty($ticket->file_path3))
-            <li><a target="_blank" href="{{$ticket->file_path3}}">Файл</a></li>
+            <li><a target="_blank" href="<?echo substr($ticket->file_path3,strpos($ticket->file_path3,'web-kmv.ru')+10)?>">Файл</a></li>
             @endif
             <li><label class="bold1 open-air">Приоритет</label>: <span>{{$ticket->priority->title}}</span></li>
             <li><label class="bold1 open-air">Статус:</label>
@@ -47,7 +49,13 @@ $ticket->worker = str_replace(']','',$ticket->worker);
             </li>
             @if(Auth::user()->role=="admin")
             <li><label class="bold1 open-air" style="vertical-align: top;display: block;">Исполнитель:</label>
-                {{ Form::select('worker[]',$users_me, $ww = explode(",", $ticket->worker), array('multiple' => true)) }}
+                {{ Form::select('worker[]',$users_me) }}
+                <!--{{ Form::select('worker[]',$users_me, $ww = explode(",", $ticket->worker), array('multiple' => true)) }}-->
+                <label class="error">{{ $errors->first('users_me') }}</label>
+            </li>
+            <li><label class="bold1 open-air" style="vertical-align: top;display: block;">Соисполнитель:</label>
+                {{ Form::select('worker2[]',$users_me) }}
+                <!--{{ Form::select('worker[]',$users_me, $ww = explode(",", $ticket->worker), array('multiple' => true)) }}-->
                 <label class="error">{{ $errors->first('users_me') }}</label>
             </li>
             <li class="price-me-title"><label class="bold1 open-air">Стоимость:</label>

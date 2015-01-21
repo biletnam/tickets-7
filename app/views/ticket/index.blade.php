@@ -48,6 +48,7 @@
     </tr>
     </tfoot>
 </table>
-{{$tickets->links()}}
+<!--{{$tickets->links()}}-->
+{{$tickets->appends(Input::except('page'))->links()}}
 @endif
 @stop

@@ -29,6 +29,8 @@
 
                 @if(!empty($ticket->file_path))
                 <p><a target="_blank" href="<?echo substr($ticket->file_path,strpos($ticket->file_path,'web-kmv.ru')+10)?>">Файл</a></p>
+                <p><a target="_blank" href="<?echo substr($ticket->file_path2,strpos($ticket->file_path2,'web-kmv.ru')+10)?>">Файл</a></p>
+                <p><a target="_blank" href="<?echo substr($ticket->file_path3,strpos($ticket->file_path3,'web-kmv.ru')+10)?>">Файл</a></p>
                 <?/*<li><a target="_blank" href="{{URL::to('manager',array('ticket'=>$ticket->id))}}">Файл</a></li>*/?>
                 @endif
 
@@ -50,7 +52,17 @@
                 @endif
                 @endif
                 @endif
-                <p><label class="bold1 open-air"> Отправить на проверку</label></p>
+
+
+                <p>
+                    @if(Auth::user()->role=='worker' || Auth::user()->role=='admin')
+                        @if($ticket->status_id!='6')
+                        <a href="?status_id=6">Отправить на проверку</a>
+                        @else
+                        Отправлено на проверку
+                        @endif
+                    @endif
+                </p>
             </div>
         </div>
     </div>

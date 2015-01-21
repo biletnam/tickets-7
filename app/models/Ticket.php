@@ -7,12 +7,14 @@ class Ticket extends \Eloquent {
         if (Auth::user()->role!=="admin")
         {
             if(Auth::user()->role == 'worker') {
-                $query->where('worker','LIKE','%['.Auth::user()->id.']%');
+                $query->where('worker','LIKE','%['.Auth::user()->id.']%')->orWhere('user_id', '=', Auth::user()->id);
             } else {
                 $query->where('user_id','=',Auth::user()->id);
             }
         }elseif(Auth::user()->role=="admin" && Input::get('user_id',false)){
             $query->where('user_id','=',Input::get('user_id'));
+        } elseif(Auth::user()->role=="admin" && Input::get('user_id2',false)){
+            $query->where('worker','LIKE','%['.Input::get('user_id2',false).']%');
         }
         if(Input::get('status_id') && is_numeric((int)Input::get('status_id'))){
             if(is_array(Input::get("status_id"))) $query->whereIn('status_id',Input::get('status_id'));
@@ -66,4 +68,5 @@ class Ticket extends \Eloquent {
     {
         return $this->hasMany('TicketComment');
     }
+
 }

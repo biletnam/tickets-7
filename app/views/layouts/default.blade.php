@@ -13,7 +13,7 @@
     <div class="wrapper bg-style2">
         <header class="header">
             <div class="top-header">
-                <a class="logo" href="http://www.web-kmv.ru/"></a>
+                <a class="logo" href="/"></a>
                 @if (Auth::check())
                     <nav>
                         <ul>

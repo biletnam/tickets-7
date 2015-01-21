@@ -23,9 +23,15 @@
             </li>
             <li>
                 <span class="add-file prikrepit_fail">Прикрепить файл <span>(не больше 8 Мб)</span>:</span><br/>
-                {{Form::file('file_path')}}
-                {{Form::file('file_path2')}}
-                {{Form::file('file_path3')}}
+                <div class="addFile">
+                    {{Form::file('file_path')}} <a class="delFileme" href="#">удалить</a>
+                </div>
+                <div class="addFile">
+                    {{Form::file('file_path2')}} <a class="delFileme" href="#">удалить</a>
+                </div>
+                <div class="addFile">
+                    {{Form::file('file_path3')}} <a class="delFileme" href="#">удалить</a>
+                </div>
                 <label class="error">{{ $errors->first('file_path') }}</label>
             </li>
         </ul>
