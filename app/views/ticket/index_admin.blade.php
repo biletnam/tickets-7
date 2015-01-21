@@ -3,7 +3,7 @@
 @section('content')
 <h3 xmlns="http://www.w3.org/1999/html">Задачи</h3>
 <div class="pod_title_message">
-    <? echo Input::get("mes");?>
+    <? echo urldecode(Input::get("mes"));?>
     @if(Session::has('ticket.create'))
     {{Session::get('ticket.create')}}
     @endif
@@ -115,7 +115,7 @@ $data = $tickets->users_me;
         <?$k++;?>
     <?php endforeach;?>
     <tr>
-        <td colspan="5">Общее количество времени составляет: <strong><?=$vremya?></strong> минута(ы)</td>
+        <td class="colvo" colspan="10">Общее количество времени составляет: <strong><?=$vremya?></strong> минута(ы)</td>
     </tr>
     </tbody>
     <tfoot>
